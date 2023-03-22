@@ -6,15 +6,15 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 10:18:29 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 11:51:25 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/22 22:11:37 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/HumanA.hpp"
 
 HumanA::HumanA(std::string name, Weapon& weapon) 
-	: _weapon(weapon), _name(name) {
-		
+	: _weapon(weapon) {
+	this->_name = name;
 }
 
 HumanA::~HumanA() {
