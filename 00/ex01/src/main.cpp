@@ -6,12 +6,13 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:33:50 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/19 15:38:34 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/22 18:05:27 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/contact.hpp"
 #include "../include/phonebook.hpp"
+#include <iomanip>
 #include <sstream>
 
 void initPhoneBookContacts(PhoneBook *phoneBook) {
@@ -50,9 +51,6 @@ int printFieldByIndexElement(PhoneBook phoneBook, int idx, int element) {
 			break;
 		case PHONE_NUMBER:
 			toPut = phoneBook.getPhoneNumberByIndex(idx);
-			break;
-		case DARKEST_SECRET:
-			toPut = phoneBook.getDarkestSecretByIndex(idx);
 			break;
 		default:
 			std::cout << "Invalid Element!!!" << std::endl;
@@ -105,11 +103,17 @@ void printAllContacts(PhoneBook phoneBook) {
 }
 
 void printSpecificContactByIndex(PhoneBook phoneBook, int idx) {
-	printContactFloor();
-	printContactSchema();
-	printContactFloor();
-	printContactDetailByIndex(phoneBook, idx);
-	printContactFloor();
+	std::cout << "Index: " << idx << std::endl;
+	
+	std::cout << "FirstName: " << phoneBook.getFirstNameByIndex(idx) << std::endl;
+
+	std::cout << "LastName: " << phoneBook.getLastNameByIndex(idx) << std::endl;
+	
+	std::cout << "NickName: " << phoneBook.getNickNameByIndex(idx) << std::endl;
+
+	std::cout << "Contact: " << phoneBook.getPhoneNumberByIndex(idx) << std::endl;
+
+	std::cout << "DarkestSecret: " << phoneBook.getDarkestSecretByIndex(idx) << std::endl;
 }
 
 int	myAtoi(std::string str) {
@@ -141,10 +145,15 @@ int phoneBookSearch(PhoneBook phoneBook) {
 	
 	while (true){
 		printAllContacts(phoneBook);
-		std::cout << "Input contact index you want to see [0 ~ " << NUM_CONTACTS - 1 << "]" << std::endl;
+		std::cout << "Input contact index you want to see [0 ~ " << NUM_CONTACTS - 1 << ", type 'EXIT' to exit]" << std::endl;
 		std::getline(std::cin, idxInput);
+		if (std::cin.eof() == true)
+			return (false);
+		if (idxInput == "EXIT" || idxInput.empty() == true)
+			return (true);
 		system("clear");
-		if (isSearchableNumericString(idxInput) == false) {
+		if (isSearchableNumericString(idxInput) == false 
+		|| phoneBook.getContactByIndex(myAtoi(idxInput)).getIsAdded() == NOT_ADDED) {
 			std::cout << "Input was invalid." << std::endl;
 			continue ;
 		}
@@ -155,6 +164,14 @@ int phoneBookSearch(PhoneBook phoneBook) {
 	}
 }
 
+int	isStringOnlySpaces(std::string string) {
+	for (int i = 0; i < (int)string.length(); i++) {
+		if (std::isspace(string[i]) == false)
+			return (false);
+	}
+	return (true);
+}
+
 int	phoneBookAdd(PhoneBook *phoneBook) {
 	std::string firstName;
 	std::string lastName;
@@ -162,37 +179,49 @@ int	phoneBookAdd(PhoneBook *phoneBook) {
 	std::string phoneNumber;
 	std::string darkestSecret;
 
-	std::cout << "Input first name of contact owner : " << std::endl;
-	std::getline(std::cin, firstName);
-	if (std::cin.eof() == true)
-		return (false);
-	std::cout << "Input last name of contact owner : " << std::endl;
-	std::getline(std::cin, lastName);
-	if (std::cin.eof() == true)
-		return (false);
-	std::cout << "Input nick name of contact owner : " << std::endl;
-	std::getline(std::cin, nickName);
-	if (std::cin.eof() == true)
-		return (false);
-	std::cout << "Input phoneNumber of contact owner : " << std::endl;
-	std::getline(std::cin, phoneNumber);
-	if (std::cin.eof() == true)
-		return (false);
-	std::cout << "Input darkestSecret of contact owner : " << std::endl;
-	std::getline(std::cin, darkestSecret);
-	if (std::cin.eof() == true)
-		return (false);
-	phoneBook->swapContacts();
-	phoneBook->setContactByIndex(
-		0,
-		firstName,
-		lastName,
-		nickName,
-		phoneNumber,
-		darkestSecret,
-		ADDED
-	);
-	return (true);
+	while (true) {
+		std::cout << "Input first name of contact owner : " << std::endl;
+		std::getline(std::cin, firstName);
+		if (std::cin.eof() == true)
+			return (false);
+		if (firstName.empty() == true || isStringOnlySpaces(firstName) == true)
+			continue ;
+		std::cout << "Input last name of contact owner : " << std::endl;
+		std::getline(std::cin, lastName);
+		if (std::cin.eof() == true)
+			return (false);
+		if (lastName.empty() == true || isStringOnlySpaces(lastName) == true)
+			continue ;
+		std::cout << "Input nick name of contact owner : " << std::endl;
+		std::getline(std::cin, nickName);
+		if (std::cin.eof() == true)
+			return (false);
+		if (nickName.empty() == true || isStringOnlySpaces(nickName) == true)
+			continue ;
+		std::cout << "Input phoneNumber of contact owner : " << std::endl;
+		std::getline(std::cin, phoneNumber);
+		if (std::cin.eof() == true)
+			return (false);
+		if (phoneNumber.empty() == true || isStringOnlySpaces(phoneNumber) == true)
+			continue ;
+		std::cout << "Input darkestSecret of contact owner : " << std::endl;
+		std::getline(std::cin, darkestSecret);
+		if (std::cin.eof() == true)
+			return (false);
+		if (darkestSecret.empty() == true || isStringOnlySpaces(darkestSecret) == true)
+			continue ;
+		phoneBook->swapContacts();
+		phoneBook->setContactByIndex(
+			0,
+			firstName,
+			lastName,
+			nickName,
+			phoneNumber,
+			darkestSecret,
+			ADDED
+		);
+		return (true);
+	}
 }
 
 int	proceedByCommand(PhoneBook *phoneBook, std::string command) {
@@ -201,9 +230,8 @@ int	proceedByCommand(PhoneBook *phoneBook, std::string command) {
 		return (phoneBookAdd(phoneBook));
 	if (command == "SEARCH")
 		return (phoneBookSearch(*phoneBook));
-	if (command == "EXIT") {
+	if (command == "EXIT")
 		exit(EXIT_SUCCESS);
-	}
 	return (true);
 }
 
@@ -226,4 +254,5 @@ int main() {
 		else
 			break ;
 	}
+	return 0;
 }

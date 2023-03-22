@@ -6,15 +6,16 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/03/19 14:24:05 by sanan            ###   ########.fr        #
+#    Updated: 2023/03/22 18:07:26 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = violence
 
 SRC_FILES =\
-contact.cpp\
-phonebook.cpp\
+Weapon.cpp\
+HumanA.cpp\
+HumanB.cpp\
 main.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
@@ -45,7 +46,7 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.cpp
 
 clean :
 	@rm -rf $(OBJS)
-	@rmdir $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 	@echo $(RED) "	   🐶 cleaned object files!" $(RESET)
 
 fclean : clean

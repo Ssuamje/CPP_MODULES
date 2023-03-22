@@ -6,14 +6,15 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:31:07 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/19 15:12:18 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/21 23:16:54 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include "utils.hpp"
+# include <iostream>
 
 enum contactElements {
 	ADDED,

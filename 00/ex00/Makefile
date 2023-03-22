@@ -6,7 +6,7 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/03/19 12:54:48 by sanan            ###   ########.fr        #
+#    Updated: 2023/03/22 18:07:04 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.cpp
 
 clean :
 	@rm -rf $(OBJS)
-	@rmdir $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 	@echo $(RED) "	   🐶 cleaned object files!" $(RESET)
 
 fclean : clean
