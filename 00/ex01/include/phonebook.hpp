@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:13 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 18:06:49 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/22 22:06:34 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include <iostream>
 # include "contact.hpp"
-# define NUM_CONTACTS 9
+# define NUM_CONTACTS 8
 
 class PhoneBook {
 	private:

@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:33:50 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 18:05:27 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/22 22:10:23 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void printContactSchema(void) {
 	std::cout << "|" << std::setw(10) << "FirstName";
 	std::cout << "|" << std::setw(10) << "LastName";
 	std::cout << "|" << std::setw(10) << "NickName";
-	std::cout << "|" << std::setw(10) << "Contact" << "|" << std::endl;
+	std::cout << "|" << std::setw(10) << "Number" << "|" << std::endl;
 }
 
 void printContactDetailByIndex(PhoneBook phoneBook, int idx) {
@@ -111,7 +111,7 @@ void printSpecificContactByIndex(PhoneBook phoneBook, int idx) {
 	
 	std::cout << "NickName: " << phoneBook.getNickNameByIndex(idx) << std::endl;
 
-	std::cout << "Contact: " << phoneBook.getPhoneNumberByIndex(idx) << std::endl;
+	std::cout << "PhoneNumber: " << phoneBook.getPhoneNumberByIndex(idx) << std::endl;
 
 	std::cout << "DarkestSecret: " << phoneBook.getDarkestSecretByIndex(idx) << std::endl;
 }
