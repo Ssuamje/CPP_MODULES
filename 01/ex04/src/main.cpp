@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:34:18 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 15:45:17 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 15:49:18 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int main(int ac, char **av) {
 	FileManager		fm;
 	std::string		extract;
 
-	(void)ac;
 	if (isArgsValid(ac, av) == false
 	||	fm.isFileValid(av[1]) == false)
 		return (EXIT_FAILURE);
