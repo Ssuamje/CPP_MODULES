@@ -6,11 +6,10 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:34:18 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 15:49:18 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:46:47 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../include/StringManager.hpp"
 #include "../include/FileManager.hpp"
 #include <iostream>
 

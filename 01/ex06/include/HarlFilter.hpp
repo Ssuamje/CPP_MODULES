@@ -6,11 +6,11 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:17:41 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:43:19 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:48:00 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+
 #ifndef HARLFILTER_HPP
 # define HARLFILTER_HPP
 

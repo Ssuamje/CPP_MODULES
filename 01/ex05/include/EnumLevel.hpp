@@ -6,11 +6,11 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:24:31 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:30:42 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:48:00 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+
 #ifndef ENUMLEVEL_HPP
 # define ENUMLEVEL_HPP
 

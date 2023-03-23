@@ -6,11 +6,10 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:17:41 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:26:32 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:50:12 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef HARL_HPP
 # define HARL_HPP
 

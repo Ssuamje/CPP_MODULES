@@ -6,11 +6,11 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:13 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 22:06:34 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:48:00 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
@@ -21,7 +21,7 @@
 class PhoneBook {
 	private:
 		Contact _phoneBook[NUM_CONTACTS];
-	
+
 	public:
 		PhoneBook();
 		~PhoneBook();
