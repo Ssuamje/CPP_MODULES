@@ -1,58 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*   HarlFilter.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:31:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:58:27 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 17:42:54 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Harl.hpp"
+#include "../include/HarlFilter.hpp"
 #include "../include/EnumLevel.hpp"
 
-void	(*Harl::_func[4])(void) = {
-	&Harl::debug,
-	&Harl::info,
-	&Harl::warning,
-	&Harl::error
+void	(*HarlFilter::_func[4])(void) = {
+	&HarlFilter::debug,
+	&HarlFilter::info,
+	&HarlFilter::warning,
+	&HarlFilter::error
 };
 
-Harl::Harl() {
+HarlFilter::HarlFilter() {
 
 }
 
-Harl::~Harl() {
+HarlFilter::~HarlFilter() {
 
 }
 
-void	Harl::debug() {
+void	HarlFilter::debug() {
 	std::cout <<
 	"I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger.\nI really do!" <<
 	std::endl;
 }
 
-void	Harl::info() {
+void	HarlFilter::info() {
 	std::cout <<
 	"I cannot believe adding extra bacon costs more money.\nYou didn't put enough bacon in my burger!\nIf you did, I wouldn't be asking for more!" <<
 	std::endl;
 }
 
-void	Harl::warning() {
+void	HarlFilter::warning() {
 	std::cout <<
 	"I think I deserve to have some extra bacon for free.\nI've been coming for years whereas you started working here since last month." <<
 	std::endl;
 }
 
-void	Harl::error() {
+void	HarlFilter::error() {
 	std::cout <<
 	"This is unacceptable!\nI want to speak to the manager now." <<
 	std::endl;
 }
 
-void	Harl::complain(std::string level) {
+void	HarlFilter::complain(std::string level) {
 	int enumLevel = EnumLevel::enumize(level);
 	if (enumLevel == NONE_EXIST) {
 		std::cout <<
@@ -61,20 +61,20 @@ void	Harl::complain(std::string level) {
 	}
 	switch (enumLevel) {
 		case DEBUG:
-			Harl::_func[DEBUG]();
+			HarlFilter::_func[DEBUG]();
 			break;
 		case INFO:
-			Harl::_func[INFO]();
+			HarlFilter::_func[INFO]();
 			break;
 		case WARNING:
-			Harl::_func[WARNING]();
+			HarlFilter::_func[WARNING]();
 			break;
 		case ERROR:
-			Harl::_func[ERROR]();
+			HarlFilter::_func[ERROR]();
 			break;
 		default:
 			std::cout <<
-			"This can't be happen!!!" << std::endl;
+			"This can't be Happen!!!" << std::endl;
 			break;
 	}
 }
