@@ -6,13 +6,14 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/03/22 23:11:06 by sanan            ###   ########.fr        #
+#    Updated: 2023/03/22 22:48:43 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = name
+NAME = replace
 
 SRC_FILES =\
+FileManager.cpp\
 main.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
