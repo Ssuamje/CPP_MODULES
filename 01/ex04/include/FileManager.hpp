@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:35:23 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 09:19:43 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 15:32:19 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fstream>
 # include <iostream>
 
-// ofs와 ifs는 기본적으로 copy되지 않는 것이기 때문에, static으로 선언해주어야 함
 class FileManager {
 	private:
 	static std::ofstream	_ofs;
@@ -28,6 +27,7 @@ class FileManager {
 	FileManager();
 	FileManager(std::string file);
 	~FileManager();
+	int			isFileValid(std::string file);
 	void		setFile(std::string file);
 	std::string	extractStringFromFile();
 	void		putStringToFile(std::string str);

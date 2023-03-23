@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:36:16 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 09:21:07 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 15:44:48 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ std::ifstream FileManager::_ifs;
 std::ofstream FileManager::_ofs;
 
 FileManager::FileManager() {
-	
+
 }
 
 FileManager::FileManager(std::string file) {
@@ -24,17 +24,29 @@ FileManager::FileManager(std::string file) {
 }
 
 FileManager::~FileManager() {
-	
+
 }
 
 void		FileManager::setFile(std::string file) {
 	this->_file = file;
 }
 
+int			FileManager::isFileValid(std::string file) {
+	_ifs.open(file);
+	if (_ifs.is_open() == false) {
+		_ifs.clear();
+		_ifs.close();
+		return (false);
+	}
+	_ifs.clear();
+	_ifs.close();
+	return (true);
+}
+
 std::string FileManager::extractStringFromFile() {
 	std::string	ret;
 	std::string	line;
-	
+
 	_ifs.open(this->_file);
 	if (_ifs.is_open() == false)
 		exit(EXIT_FAILURE); // 추가적인 정보 제공 필요
