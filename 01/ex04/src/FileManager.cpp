@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:36:16 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 15:44:48 by sanan            ###   ########.fr       */
+/*   Updated: 2023/03/23 20:30:50 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,16 @@ std::string FileManager::extractStringFromFile() {
 	std::string	line;
 
 	_ifs.open(this->_file);
-	if (_ifs.is_open() == false)
-		exit(EXIT_FAILURE); // 추가적인 정보 제공 필요
+	if (_ifs.is_open() == false) {
+		std::cout << "ifstream.open() has failed!" << std::endl;
+		exit(EXIT_FAILURE);
+	}
 	while (std::getline(_ifs, line)) {
 		ret += line;
 		if (_ifs.eof() == false || line.back() == '\n')
 			ret += std::string("\n");
 	}
-	if (_ifs.bad()) { // _ifs.fail()은 위 루프문에서 failbit이 설정될때까지 읽기를 시도하기 때문.
+	if (_ifs.bad()) {
 		std::cout <<
 		"ifstream is broken!" << std::endl;
 		exit(EXIT_FAILURE);
