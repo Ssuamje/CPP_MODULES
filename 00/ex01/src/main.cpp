@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:33:50 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 22:10:23 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:16:40 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,7 @@ int main() {
 	initPhoneBookContacts(&phoneBook);
 	while (true) {
 		std::cout << "Usage : [\"ADD\", \"SEARCH\", \"EXIT\"]" << std::endl;
+		std::cout << "SEARCH에서 네개만 보여야 한다!!!!!!!!!!!!!!" << std::endl;
 		std::getline(std::cin, input);
 		if (std::cin.eof() == true)
 			return (EXIT_SUCCESS);
