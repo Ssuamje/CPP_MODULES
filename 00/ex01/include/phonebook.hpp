@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:13 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 18:48:00 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/09 19:01:27 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class PhoneBook {
 			std::string darkestSecret,
 			int			isAdded
 		);
-		Contact getContactByIndex(int index);
+		Contact 	getContactByIndex(int index);
 		std::string getFirstNameByIndex(int index);
 		std::string getLastNameByIndex(int index);
 		std::string getNickNameByIndex(int index);
