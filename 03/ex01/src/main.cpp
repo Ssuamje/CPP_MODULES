@@ -6,15 +6,15 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:22:58 by sanan             #+#    #+#             */
-/*   Updated: 2023/04/12 09:33:43 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/12 09:49:30 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ClapTrap.hpp"
+#include "../include/ScavTrap.hpp"
 
 int main() {
-	ClapTrap	sanan("SANAN");
-	ClapTrap	yooh("YOOH");
+	ScavTrap	sanan("SANAN");
+	ScavTrap	yooh("YOOH");
 	std::string target = "TARGET";
 
 	sanan.attack(target);
@@ -28,12 +28,12 @@ int main() {
 	sanan.attack(target);
 	sanan.attack(target);
 	sanan.attack(target);
-	std::cout << "###############no energy from here!!###############" << std::endl;
 	sanan.attack(target);
 	sanan.beRepaired(1);
 
-	yooh.takeDamage(10);
+	yooh.takeDamage(100);
 	yooh.attack(target);
 	yooh.beRepaired(10);
+	
 	return 0;
 }

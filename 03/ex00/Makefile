@@ -6,13 +6,14 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/04/09 16:22:14 by sanan            ###   ########.fr        #
+#    Updated: 2023/04/09 19:44:47 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = open
+NAME = claptrap
 
 SRC_FILES =\
+ClapTrap.cpp\
 main.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
