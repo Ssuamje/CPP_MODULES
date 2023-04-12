@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 09:40:15 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 18:48:00 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:44:09 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class HumanA{
 	Weapon		&_weapon;
 
 	public:
-	HumanA(std::string name, Weapon& weapon);
+	HumanA(const std::string name, Weapon& weapon);
 	~HumanA();
 	void	attack();
 };

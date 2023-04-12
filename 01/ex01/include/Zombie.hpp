@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 23:11:38 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 18:48:00 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:24:43 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ class Zombie {
 
 	public :
 	Zombie();
-	Zombie(std::string name);
+	Zombie(const std::string name);
 	~Zombie();
 	void announce();
-	void setName(std::string name);
+	void setName(const std::string name);
 	void setNumber(int number);
 };
 

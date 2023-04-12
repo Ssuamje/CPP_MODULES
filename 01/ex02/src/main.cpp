@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:45:51 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 09:31:17 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:24:11 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int main() {
 	"string addr: " << &string << std::endl <<
 	"stringPTR: " << stringPTR << std::endl <<
 	"stringREF addr: " << &stringREF << std::endl;
-	std::cout <<
-	"\n--------------------\n" << std::endl;
+	
+	std::cout << "\n--------------------\n" << std::endl;
+
 	std::cout <<
 	"string: " << string << std::endl <<
 	"stringPTR value: " << *stringPTR << std::endl <<

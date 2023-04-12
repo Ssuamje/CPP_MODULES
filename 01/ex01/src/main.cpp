@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:37:53 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 08:45:15 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:21:35 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int main() {
 	Zombie* horde = zombieHorde(nZombies, "HeapZombie");
 	
-	std::cout <<
-	"\n--------------------\n" << std::endl;
+	std::cout << "\n--------------------\n" << std::endl;
 	delete[] horde;
 }

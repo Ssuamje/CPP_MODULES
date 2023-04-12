@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 09:35:06 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 18:48:00 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:42:09 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ class Weapon {
 	public:
 	Weapon();
 	~Weapon();
-	Weapon(std::string type);
-	std::string	getType();
-	void		setType(std::string newType);
+	Weapon(const std::string type);
+	const std::string&	getType();
+	void				setType(const std::string newType);
 };
 
 #endif

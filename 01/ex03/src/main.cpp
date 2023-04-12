@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 09:51:48 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/22 22:20:09 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:48:19 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,6 @@ int main() {
 		club.setType("some other type of club");
 		jim.attack();
 	}
+
+	return 0;
 }

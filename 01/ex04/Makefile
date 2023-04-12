@@ -6,7 +6,7 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/03/22 22:48:43 by sanan            ###   ########.fr        #
+#    Updated: 2023/04/12 14:59:47 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 	@$(ECHO) $(PURPLE) "🐶 : $(NAME) is Ready!" $(RESET)
+	@echo "THIS IS FOR TEST HELLO NICE TO MEET YOU!\nHELLO\nHELLO\nHELLO\nlollollollollol" > myfile
 
 $(NAME) : $(OBJS)
 	@$(ECHO) $(CYAN) 🐶 assembling $(GREEN) $@
@@ -45,6 +46,7 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.cpp
 clean :
 	@rm -rf $(OBJS)
 	@rm -rf $(OBJ_DIR)
+	@rm -rf myfile myfile.replace
 	@echo $(RED) "	   🐶 cleaned object files!" $(RESET)
 
 fclean : clean
