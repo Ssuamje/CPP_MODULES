@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:33:50 by sanan             #+#    #+#             */
-/*   Updated: 2023/04/06 17:16:40 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/09 19:08:42 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ void printContactSchema(void) {
 	std::cout << "|" << std::setw(10) << "Index";
 	std::cout << "|" << std::setw(10) << "FirstName";
 	std::cout << "|" << std::setw(10) << "LastName";
-	std::cout << "|" << std::setw(10) << "NickName";
-	std::cout << "|" << std::setw(10) << "Number" << "|" << std::endl;
+	std::cout << "|" << std::setw(10) << "NickName" << "|" << std::endl;
 }
 
 void printContactDetailByIndex(PhoneBook phoneBook, int idx) {
@@ -80,13 +79,11 @@ void printContactDetailByIndex(PhoneBook phoneBook, int idx) {
 	printFieldByIndexElement(phoneBook, idx, LAST_NAME);
 	std::cout << "|";
 	printFieldByIndexElement(phoneBook, idx, NICK_NAME);
-	std::cout << "|";
-	printFieldByIndexElement(phoneBook, idx, PHONE_NUMBER);
 	std::cout << "|" << std::endl;
 }
 
 void printContactFloor(void) {
-	for (int i = 0; i < 10 * 5 + 6; i++)
+	for (int i = 0; i < 10 * 4 + 5; i++)
 		std::cout << "-";
 	std::cout << std::endl;
 }
@@ -104,11 +101,11 @@ void printAllContacts(PhoneBook phoneBook) {
 
 void printSpecificContactByIndex(PhoneBook phoneBook, int idx) {
 	std::cout << "Index: " << idx << std::endl;
-	
+
 	std::cout << "FirstName: " << phoneBook.getFirstNameByIndex(idx) << std::endl;
 
 	std::cout << "LastName: " << phoneBook.getLastNameByIndex(idx) << std::endl;
-	
+
 	std::cout << "NickName: " << phoneBook.getNickNameByIndex(idx) << std::endl;
 
 	std::cout << "PhoneNumber: " << phoneBook.getPhoneNumberByIndex(idx) << std::endl;
@@ -142,7 +139,7 @@ int	isSearchableNumericString(std::string str) {
 
 int phoneBookSearch(PhoneBook phoneBook) {
 	std::string idxInput;
-	
+
 	while (true){
 		printAllContacts(phoneBook);
 		std::cout << "Input contact index you want to see [0 ~ " << NUM_CONTACTS - 1 << ", type 'EXIT' to exit]" << std::endl;
@@ -152,7 +149,7 @@ int phoneBookSearch(PhoneBook phoneBook) {
 		if (idxInput == "EXIT" || idxInput.empty() == true)
 			return (true);
 		system("clear");
-		if (isSearchableNumericString(idxInput) == false 
+		if (isSearchableNumericString(idxInput) == false
 		|| phoneBook.getContactByIndex(myAtoi(idxInput)).getIsAdded() == NOT_ADDED) {
 			std::cout << "Input was invalid." << std::endl;
 			continue ;
@@ -238,11 +235,10 @@ int	proceedByCommand(PhoneBook *phoneBook, std::string command) {
 int main() {
 	std::string input;
 	PhoneBook phoneBook;
-	
+
 	initPhoneBookContacts(&phoneBook);
 	while (true) {
 		std::cout << "Usage : [\"ADD\", \"SEARCH\", \"EXIT\"]" << std::endl;
-		std::cout << "SEARCH에서 네개만 보여야 한다!!!!!!!!!!!!!!" << std::endl;
 		std::getline(std::cin, input);
 		if (std::cin.eof() == true)
 			return (EXIT_SUCCESS);
