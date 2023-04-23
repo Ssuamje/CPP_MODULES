@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:34:18 by sanan             #+#    #+#             */
-/*   Updated: 2023/04/12 15:06:37 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/23 14:58:47 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 std::string replaceString(std::string origin, std::string from, std::string to) {
     std::string		result;
-    unsigned int	start_pos = 0;
-    unsigned int	pos;
+    size_t			start_pos = 0;
+    size_t			pos;
 
     while ((pos = origin.find(from, start_pos)) != std::string::npos) {
         result += origin.substr(start_pos, pos - start_pos) + to;
