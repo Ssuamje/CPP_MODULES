@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:27:41 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:30:36 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/23 16:02:45 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,10 @@ EnumLevel::~EnumLevel() {
 }
 
 int EnumLevel::enumize(std::string level) {
-	if (level == "DEBUG")
-		return (DEBUG);
-	if (level == "INFO")
-		return (INFO);
-	if (level == "WARNING")
-		return (WARNING);
-	if (level == "ERROR")
-		return (ERROR);
+	std::string str[4] = ["DEBUG", "INFO", "WARNING", "ERROR"];
+	for (int i = 0; i < 4; i++) {
+		if (level == str[i])
+			return (i);
+	}
 	return (NONE_EXIST);
 }

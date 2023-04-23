@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:31:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:58:27 by sanan            ###   ########.fr       */
+/*   Updated: 2023/04/23 16:03:32 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,6 @@ void	Harl::complain(std::string level) {
 		"Invalid Level!" << std::endl;
 		return ;
 	}
-	switch (enumLevel) {
-		case DEBUG:
-			Harl::_func[DEBUG]();
-			break;
-		case INFO:
-			Harl::_func[INFO]();
-			break;
-		case WARNING:
-			Harl::_func[WARNING]();
-			break;
-		case ERROR:
-			Harl::_func[ERROR]();
-			break;
-		default:
-			std::cout <<
-			"This can't be happen!!!" << std::endl;
-			break;
-	}
+	Harl::_func[enumLevel]();
 }
 

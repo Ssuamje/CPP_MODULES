@@ -62,16 +62,12 @@ void	HarlFilter::complain(std::string level) {
 	switch (enumLevel) {
 		case DEBUG:
 			HarlFilter::_func[DEBUG]();
-			break;
 		case INFO:
 			HarlFilter::_func[INFO]();
-			break;
 		case WARNING:
 			HarlFilter::_func[WARNING]();
-			break;
 		case ERROR:
 			HarlFilter::_func[ERROR]();
-			break;
 		default:
 			std::cout <<
 			"This can't be Happen!!!" << std::endl;
