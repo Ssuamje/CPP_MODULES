@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:27:09 by sanan             #+#    #+#             */
-/*   Updated: 2023/03/23 17:57:58 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/12 18:35:03 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int main(int ac, char **av) {
 		"[ " << "Probably complaining about insignificant problems" << " ]" << std::endl;
 		return (EXIT_FAILURE);
 	}
-	std::cout <<
-	"[ " << level << " ]" << std::endl;
 	HarlFilter::complain(level);
 
 	return 0;
