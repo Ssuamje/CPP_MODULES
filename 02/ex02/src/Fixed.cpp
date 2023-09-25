@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 18:58:05 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/25 14:07:36 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/25 15:52:45 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,96 @@ float	Fixed::toFloat() const {
 
 int		Fixed::toInt() const {
 	return (int)(_fpValue >> _frBits);
+}
+
+//ex02 below
+bool	Fixed::operator>(Fixed const &ref) const {
+	return (_fpValue > ref.getRawBits());
+}
+
+bool	Fixed::operator<(Fixed const &ref) const {
+	return (_fpValue < ref.getRawBits());
+}
+
+bool	Fixed::operator>=(Fixed const &ref) const {
+	return (_fpValue >= ref.getRawBits());
+}
+
+bool	Fixed::operator<=(Fixed const &ref) const {
+	return (_fpValue <= ref.getRawBits());
+}
+
+bool	Fixed::operator==(Fixed const &ref) const {
+	return (_fpValue == ref.getRawBits());
+}
+
+bool	Fixed::operator!=(Fixed const &ref) const {
+	return (_fpValue != ref.getRawBits());
+}
+
+Fixed	Fixed::operator+(Fixed const &ref) const {
+	return Fixed(toFloat() + ref.toFloat());
+}
+
+Fixed	Fixed::operator-(Fixed const &ref) const {
+	return Fixed(toFloat() - ref.toFloat());
+}
+
+Fixed	Fixed::operator*(Fixed const &ref) const {
+	return Fixed(toFloat() * ref.toFloat());
+}
+
+Fixed	Fixed::operator/(Fixed const &ref) const {
+	return Fixed(toFloat() / ref.toFloat());
+}
+
+Fixed&	Fixed::operator++() {
+	_fpValue++;
+	return *this;
+}
+
+Fixed	Fixed::operator++(int) {
+	Fixed tmp(*this);
+	operator++();
+	return tmp;
+}
+
+Fixed&	Fixed::operator--() {
+	_fpValue--;
+	return *this;
+}
+
+Fixed	Fixed::operator--(int) {
+	Fixed tmp(*this);
+	operator--();
+	return tmp;
+}
+
+//static
+Fixed&	Fixed::min(Fixed &a, Fixed &b) {
+	if (a.getRawBits() < b.getRawBits())
+		return a;
+	else
+		return b;
+}
+
+const Fixed&	Fixed::min(Fixed const &a, Fixed const &b) {
+	if (a.getRawBits() < b.getRawBits())
+		return a;
+	else
+		return b;
+}
+
+Fixed&	Fixed::max(Fixed &a, Fixed &b) {
+	if (a.getRawBits() > b.getRawBits())
+		return a;
+	else
+		return b;
+}
+
+const Fixed&	Fixed::max(Fixed const &a, Fixed const &b) {
+	if (a.getRawBits() > b.getRawBits())
+		return a;
+	else
+		return b;
 }
