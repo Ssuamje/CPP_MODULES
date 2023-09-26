@@ -6,13 +6,15 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 22:06:47 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/25 22:41:54 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/26 12:03:56 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Animal.hpp"
 #include "../include/Cat.hpp"
 #include "../include/Dog.hpp"
+#include "../include/WrongAnimal.hpp"
+#include "../include/WrongCat.hpp"
 
 int main()
 {
@@ -37,7 +39,17 @@ int main()
 
     std::cout << "************************" << std::endl;
 
-    
+    const WrongAnimal* wrongAnimal = new WrongAnimal();
+    const WrongAnimal* wrongCat = new WrongCat();
 
+    std::cout << std::endl;
+    std::cout << wrongCat->getType() << " " << std::endl;
+    std::cout << std::endl;
+
+    wrongCat->makeSound(); //will output the wrong animal sound
+    wrongAnimal->makeSound();
+
+    delete wrongAnimal;
+    delete wrongCat;
     return (0);
 }
