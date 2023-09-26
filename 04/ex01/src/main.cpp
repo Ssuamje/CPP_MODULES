@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 22:06:47 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/26 13:19:28 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/26 13:24:27 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "../include/Cat.hpp"
 #include "../include/Dog.hpp"
 
-Animal** createAnimalsInEvenDogsOddCats(int count) {
-    Animal **animals = new Animal*[count];
+const Animal** createAnimalsInEvenDogsOddCats(int count) {
+    const Animal **animals = new const Animal*[count];
     for (int i = 0; i < count; i++) {
         if (i % 2 == 0)
             animals[i] = new Dog();
@@ -25,10 +25,22 @@ Animal** createAnimalsInEvenDogsOddCats(int count) {
     return animals;
 }
 
+void leaks() {
+    system("leaks brains");
+}
+
 int main()
 {
-    int countOfAnimals = 100;
-    Animal** animals = createAnimalsInEvenDogsOddCats(countOfAnimals);
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
+
+    delete dog;
+    delete cat;
+
+    std::cout << "------------------" << std::endl;
+
+    int countOfAnimals = 4;
+    const Animal** animals = createAnimalsInEvenDogsOddCats(countOfAnimals);
     
     std::cout << "------------------" << std::endl;
 
@@ -36,5 +48,6 @@ int main()
         delete animals[i];
     }
     delete animals;
+    atexit(leaks);
     return (0);
 }
