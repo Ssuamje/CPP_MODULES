@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 18:54:30 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/25 15:54:03 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/28 14:17:26 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int main() {
 	Fixed const d(b);
 
 	a = Fixed(1234.4321f);
-
-	std::cout << "a is " << a << std::endl;
+	
 	std::cout << "b is " << b << std::endl;
 	std::cout << "c is " << c << std::endl;
 	std::cout << "d is " << d << std::endl;
