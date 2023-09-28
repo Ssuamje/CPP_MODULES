@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/04/12 09:45:20 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/28 22:38:08 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void	ScavTrap::beRepaired(unsigned int amount) {
 }
 
 bool	ScavTrap::isTrapActable() {
-	if (this->energyPoints <= 0) {
-		std::cout << "[ScavTrap - " << this->name << "]: is out of ENERGY!" << std::endl;
-		return (false);
-	}
 	if (this->hitPoints <= 0) {
 		std::cout << "[ScavTrap - " << this->name << "]: is out of HP!" << std::endl;
+		return (false);
+	}
+	if (this->energyPoints <= 0) {
+		std::cout << "[ScavTrap - " << this->name << "]: is out of ENERGY!" << std::endl;
 		return (false);
 	}
 	return (true);
