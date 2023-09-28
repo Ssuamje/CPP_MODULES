@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/28 22:38:20 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/28 22:45:15 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 #include "../include/FragTrap.hpp"
 
 FragTrap::FragTrap()
-: name("missingno"), hitPoints(100), energyPoints(100), attackDamage(30) {
+: ClapTrap() {
+	this->hitPoints = 100;
+	this->energyPoints = 100;
+	this->attackDamage = 30;
 	std::cout << "\x1b[33m""[FragTrap]: default constructor has called!""\x1b[0m" << std::endl;
 }
 
-FragTrap::FragTrap(FragTrap const &ref) {
+FragTrap::FragTrap(FragTrap const &ref): ClapTrap(ref) {
 	*this = ref;
 	std::cout << "\x1b[35m""[FragTrap]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name)
-: hitPoints(100), energyPoints(100), attackDamage(30) {
-	this->name = name;
+: ClapTrap(name) {
+	this->hitPoints = 100;
+	this->energyPoints = 100;
+	this->attackDamage = 30;
 	std::cout << "\x1b[35m""[FragTrap]: name constructor has called!""\x1b[0m" << std::endl;
 }
 
