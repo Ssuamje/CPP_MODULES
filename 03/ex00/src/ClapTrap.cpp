@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 18:09:10 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 20:09:40 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	if (this->isActive()) {
 		std::cout << "\x1b[33m""[ClapTrap - " << this->name << "]: repaired " << amount << " hit points!""\x1b[0m" << std::endl;
 		this->energyPoints--;
-		if (this->hitPoints + amount > 10)
-			this->hitPoints = 10;
+		if (this->hitPoints > UINT_MAX - amount)
+			this->hitPoints = UINT_MAX;
 		else
 			this->hitPoints += amount;
 	}
