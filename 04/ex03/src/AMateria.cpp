@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:38:08 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/27 17:24:35 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 16:18:19 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,8 @@ AMateria&	AMateria::operator=(AMateria const &ref) {
     else
         std::cout << "\x1b[34m""[AMateria]: assign operator with same instance!""\x1b[0m" << std::endl;
     return (*this);
+}
+
+void AMateria::use(ICharacter& target) {
+    std::cout << "\x1b[32m""* shoots an Materia at " << target.getName() << " *""\x1b[0m" << std::endl;
 }

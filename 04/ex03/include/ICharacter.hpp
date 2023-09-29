@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:39:20 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/27 17:26:28 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 16:12:07 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class ICharacter {
     private:
 
     public:
-        virtual ~ICharacter() {}
+        virtual ~ICharacter() {} // 구현체가 없으므로 {}로 정의한다.
         virtual std::string const &getName() const = 0;
         virtual void equip(AMateria* m) = 0;
         virtual void unequip(int idx) = 0;

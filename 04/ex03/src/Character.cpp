@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:23:12 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/27 17:33:48 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 16:16:39 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ Character::~Character() {
 
 Character&	Character::operator=(Character const &ref) {
     if (this != &ref) {
-        //compose deep-copy with your own class!
+        for (int i = 0; i < Character::CAPACITY; i++)
+            this->inventory[i] = ref.inventory[i];
+        this->name = ref.name;
         std::cout << "\x1b[34m""[Character]: assign operator has called!""\x1b[0m" << std::endl;
     }
     else
