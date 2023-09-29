@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/28 22:37:53 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 15:52:05 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 #include "../include/ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
-: name("missingno"), hitPoints(10), energyPoints(10), attackDamage(0) {
+ClapTrap::ClapTrap() {
+	this->name = "default";
+	this->hitPoints = 10;
+	this->energyPoints = 10;
+	this->attackDamage = 0;
 	std::cout << "\x1b[33m""[ClapTrap]: default constructor has called!""\x1b[0m" << std::endl;
 }
 
@@ -24,9 +27,11 @@ ClapTrap::ClapTrap(ClapTrap const &ref) {
 	std::cout << "\x1b[35m""[ClapTrap]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name)
-: hitPoints(10), energyPoints(10), attackDamage(0) {
+ClapTrap::ClapTrap(std::string name) {
 	this->name = name;
+	this->hitPoints = 10;
+	this->energyPoints = 10;
+	this->attackDamage = 0;
 	std::cout << "\x1b[35m""[ClapTrap]: name constructor has called!""\x1b[0m" << std::endl;
 }
 
@@ -36,11 +41,11 @@ ClapTrap::~ClapTrap() {
 
 ClapTrap&	ClapTrap::operator=(ClapTrap const &ref) {
 	if (this != &ref) {
+		std::cout << "\x1b[34m""[ClapTrap]: assign operator has called!""\x1b[0m" << std::endl;
 		this->name = ref.name;
 		this->hitPoints = ref.hitPoints;
 		this->energyPoints = ref.energyPoints;
 		this->attackDamage = ref.attackDamage;
-		std::cout << "\x1b[34m""[ClapTrap]: assign operator has called!""\x1b[0m" << std::endl;
 	}
 	else
 		std::cout << "\x1b[34m""[ClapTrap]: assign operator with same instance!""\x1b[0m" << std::endl;
