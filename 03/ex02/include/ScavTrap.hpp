@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:35:30 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 15:44:42 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 18:11:48 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class ScavTrap : public ClapTrap {
 		~ScavTrap();
 
 		ScavTrap&	operator=(const ScavTrap& ref);
-		
-		void	attack(const std::string& target);
+
+		virtual void	attack(const std::string& target);
 		void	guardGate();
 };
 

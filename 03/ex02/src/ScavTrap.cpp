@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 15:56:39 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 18:11:25 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ ScavTrap&	ScavTrap::operator=(ScavTrap const &ref) {
 }
 
 void	ScavTrap::attack(const std::string& ref) {
-	if (isTrapActable() == true) {
+	if (this->isActive()) {
 		std::cout << "\x1b[32m""[ScavTrap - " << this->name << "]: attacked " << ref << " with " << this->attackDamage << " damage!""\x1b[0m" << std::endl;
 		this->energyPoints--;
 	}
@@ -65,7 +65,7 @@ void	ScavTrap::attack(const std::string& ref) {
 }
 
 void	ScavTrap::guardGate() {
-	if (this->isTrapActable()) {
+	if (this->isActive()) {
 		this->mode = GATE_KEEPER;
 		std::cout << "[ScavTrap - " << this->name << "]: is now on gate keeper mode." << std::endl;
 	}

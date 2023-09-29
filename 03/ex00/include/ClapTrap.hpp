@@ -21,7 +21,7 @@ class ClapTrap {
 		unsigned int	hitPoints;
 		unsigned int	energyPoints;
 		unsigned int	attackDamage;
-		bool			isTrapActable();
+		bool			isActive();
 
 	public:
 		ClapTrap();

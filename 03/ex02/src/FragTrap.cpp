@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 15:43:37 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 18:11:12 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ FragTrap&	FragTrap::operator=(FragTrap const &ref) {
 }
 
 void	FragTrap::highFivesGuys() {
-	if (this->isTrapActable())
+	if (this->isActive())
 		std::cout << "[FragTrap - " << this->name << "]: is looking for +highfive+ mate!" << std::endl;
 }

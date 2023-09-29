@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:22:42 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 15:42:13 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 18:09:33 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class ClapTrap {
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
-		bool	isTrapActable();
+		bool	isActive();
 };
 
 #endif
