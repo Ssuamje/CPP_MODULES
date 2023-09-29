@@ -6,7 +6,7 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/09/29 17:10:56 by sanan            ###   ########.fr        #
+#    Updated: 2023/09/29 19:45:18 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,21 +30,21 @@ OBJS = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 INC_DIR = include/
 
-CC = c++
+CXX = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 	@$(ECHO) $(PURPLE) "🐶 : $(NAME) is Ready!" $(RESET)
 
 $(NAME) : $(OBJS)
 	@$(ECHO) $(CYAN) 🐶 assembling $(GREEN) $@
-	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
 	@$(ECHO) $(BLUE) 🐶 compiling $(GREEN) $<
-	@$(CC) $(FLAGS) -I $(INC_DIR) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -I $(INC_DIR) -c $< -o $@
 
 clean :
 	@rm -rf $(OBJS)
