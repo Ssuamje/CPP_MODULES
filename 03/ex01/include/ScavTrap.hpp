@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:35:30 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 18:26:42 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 20:00:58 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-enum	scavTrapModes {
+enum	ScavTrapModes {
 	NORMAL,
 	GATE_KEEPER,
 };
@@ -29,10 +29,11 @@ class ScavTrap : public ClapTrap {
 		ScavTrap(std::string name);
 		ScavTrap(const ScavTrap& ref);
 		~ScavTrap();
+		
 		ScavTrap&	operator=(const ScavTrap& ref);
+
 		void	attack(const std::string& target);
 		void	guardGate();
-
 };
 
 #endif
