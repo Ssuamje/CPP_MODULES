@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:22:42 by sanan             #+#    #+#             */
-/*   Updated: 2023/04/12 10:51:23 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 15:42:13 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class ClapTrap {
 		ClapTrap();
 		ClapTrap(const ClapTrap& ref);
 		ClapTrap(std::string name);
-		~ClapTrap();
+		virtual ~ClapTrap();
 
 		ClapTrap&	operator=(const ClapTrap& ref);
 

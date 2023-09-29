@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:35:30 by sanan             #+#    #+#             */
-/*   Updated: 2023/04/12 09:43:53 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 15:44:49 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ enum	scavTrapModes {
 
 class ScavTrap : public ClapTrap {
 	private:
-		std::string		name;
-		unsigned int	hitPoints;
-		unsigned int	energyPoints;
-		unsigned int	attackDamage;
-		int				mode;
+		int		mode;
 
 	public:
 		ScavTrap();
@@ -36,9 +32,6 @@ class ScavTrap : public ClapTrap {
 
 		ScavTrap&	operator=(const ScavTrap& ref);
 		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		bool	isTrapActable();
 		void	guardGate();
 };
 

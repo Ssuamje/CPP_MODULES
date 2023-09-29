@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/28 22:43:13 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 15:42:28 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ ScavTrap::ScavTrap(ScavTrap const &ref): ClapTrap(ref) {
 
 ScavTrap::ScavTrap(std::string name)
 : ClapTrap(name) {
+	std::cout << "\x1b[35m""[ScavTrap]: name constructor has called!""\x1b[0m" << std::endl;
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
 	this->mode = NORMAL;
-	std::cout << "\x1b[35m""[ScavTrap]: name constructor has called!""\x1b[0m" << std::endl;
 }
 
 ScavTrap::~ScavTrap() {
@@ -64,38 +64,9 @@ void	ScavTrap::attack(const std::string& ref) {
 		return ;
 }
 
-void	ScavTrap::takeDamage(unsigned int amount) {
-	if (isTrapActable() == true) {
-		std::cout << "\x1b[31m""[ScavTrap - " << this->name << "]: got " << amount << " damage!""\x1b[0m" << std::endl;
-		this->hitPoints -= amount;
-	}
-	else
-		return ;
-}
-
-void	ScavTrap::beRepaired(unsigned int amount) {
-	if (isTrapActable() == true) {
-		std::cout << "\x1b[33m""[ScavTrap - " << this->name << "]: repaired " << amount << " hit points!""\x1b[0m" << std::endl;
-		this->energyPoints--;
-		this->hitPoints += amount;
-	}
-	else
-		return ;
-}
-
-bool	ScavTrap::isTrapActable() {
-	if (this->hitPoints <= 0) {
-		std::cout << "[ScavTrap - " << this->name << "]: is out of HP!" << std::endl;
-		return (false);
-	}
-	if (this->energyPoints <= 0) {
-		std::cout << "[ScavTrap - " << this->name << "]: is out of ENERGY!" << std::endl;
-		return (false);
-	}
-	return (true);
-}
-
 void	ScavTrap::guardGate() {
-	this->mode = GATE_KEEPER;
-	std::cout << "[ScavTrap - " << this->name << "]: is now on gate keeper mode." << std::endl;
+	if (this->isTrapActable()) {
+		this->mode = GATE_KEEPER;
+		std::cout << "[ScavTrap - " << this->name << "]: is now on gate keeper mode." << std::endl;
+	}
 }
