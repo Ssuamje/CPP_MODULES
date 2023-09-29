@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 18:10:22 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 20:06:08 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ScavTrap::attack(const std::string& ref) {
 		this->energyPoints--;
 	}
 	else {
-		std::cout << "\x1b[32m""[ScavTrap - " << this->name << "]: I'am inactive! \x1b[0m" << std::endl;
 		return ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:22:58 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 20:00:44 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 20:06:08 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main() {
 	sanan.attack(target);
 	sanan.beRepaired(1);
 
-	yooh.takeDamage(100);
+	yooh.takeDamage(101);
 	yooh.attack(target);
 	yooh.beRepaired(10);
 
