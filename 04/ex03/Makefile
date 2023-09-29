@@ -6,7 +6,7 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/09/27 14:41:36 by sanan            ###   ########.fr        #
+#    Updated: 2023/09/29 17:10:56 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,10 @@ NAME = interface
 
 SRC_FILES =\
 AMateria.cpp\
+Character.cpp\
+Cure.cpp\
+Ice.cpp\
+MateriaSource.cpp\
 main.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)

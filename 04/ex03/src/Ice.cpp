@@ -4,10 +4,11 @@
 
 Ice::Ice() {
 	std::cout << "\x1b[33m""[Ice]: default constructor has called!""\x1b[0m" << std::endl;
+	this->type = "ice";
 }
 
 Ice::Ice(const Ice& ref) {
-	//compose deep-copy with your own class!
+	*this = ref;
 	std::cout << "\x1b[35m""[Ice]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
 

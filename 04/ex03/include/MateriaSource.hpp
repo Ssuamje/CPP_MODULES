@@ -5,13 +5,14 @@
 
 class MateriaSource: public IMateriaSource {
 	private:
-
-	public:
+		static const int CAPACITY = 4;
+		AMateria* inventory[CAPACITY];
 		MateriaSource();
 		MateriaSource(const MateriaSource& ref);
-		~MateriaSource();
-
 		MateriaSource&	operator=(const MateriaSource& ref);
+
+	public:
+		~MateriaSource();
 
 		void learnMateria(AMateria*);
 		AMateria* createMateria(std::string const & type);

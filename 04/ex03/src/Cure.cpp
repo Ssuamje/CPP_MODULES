@@ -4,10 +4,11 @@
 
 Cure::Cure() {
 	std::cout << "\x1b[33m""[Cure]: default constructor has called!""\x1b[0m" << std::endl;
+	this->type = "cure";
 }
 
 Cure::Cure(const Cure& ref) {
-	//compose deep-copy with your own class!
+	*this = ref;
 	std::cout << "\x1b[35m""[Cure]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
 

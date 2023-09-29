@@ -7,7 +7,7 @@ MateriaSource::MateriaSource() {
 }
 
 MateriaSource::MateriaSource(const MateriaSource& ref) {
-	//compose deep-copy with your own class!
+	*this = ref;
 	std::cout << "\x1b[35m""[MateriaSource]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
 
@@ -16,15 +16,20 @@ MateriaSource::~MateriaSource() {
 }
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& ref) {
+	std::cout << "\x1b[34m""[MateriaSource]: copy operator has called!""\x1b[0m" << std::endl;
 	if (this != &ref) {
-		//same as deep-copy
-		std::cout << "\x1b[34m""[MateriaSource]: copy operator has called!""\x1b[0m" << std::endl;
+		//Nothing
 	}
-	return (*this);
+	throw std::runtime_error("Factory cannot be assigned to another!\n");
 }
 
 void MateriaSource::learnMateria(AMateria* m) {
-	//implement
+	for (int i = 0; i < MateriaSource::CAPACITY; i++) {
+        if (this->inventory[i] == NULL) {
+            this->inventory[i] = m;
+            break ;
+        }
+    }
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
