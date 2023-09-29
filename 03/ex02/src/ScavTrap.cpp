@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:28:56 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 15:41:49 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 15:56:39 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,6 @@ void	ScavTrap::attack(const std::string& ref) {
 	}
 	else
 		return ;
-}
-
-bool	ScavTrap::isTrapActable() {
-	if (this->hitPoints <= 0) {
-		std::cout << "[ScavTrap - " << this->name << "]: is out of HP!" << std::endl;
-		return (false);
-	}
-	if (this->energyPoints <= 0) {
-		std::cout << "[ScavTrap - " << this->name << "]: is out of ENERGY!" << std::endl;
-		return (false);
-	}
-	return (true);
 }
 
 void	ScavTrap::guardGate() {
