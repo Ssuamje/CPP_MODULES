@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:37:06 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 17:00:41 by sanan            ###   ########.fr       */
+/*   Updated: 2023/10/01 21:32:43 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 
 class ICharacter;
 class AMateria {
-    protected:
-        std::string type;
+    private:
         AMateria();
         AMateria(const AMateria& ref);
         AMateria&	operator=(const AMateria& ref);
+
+    protected:
+        std::string type;
 
     public:
         virtual ~AMateria();
