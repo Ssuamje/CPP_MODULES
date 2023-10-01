@@ -18,14 +18,15 @@ Cure::~Cure() {
 
 Cure&	Cure::operator=(const Cure& ref) {
 	if (this != &ref) {
-		//same as deep-copy
-		std::cout << "\x1b[34m""[Cure]: copy operator has called!""\x1b[0m" << std::endl;
+		// this->type = ref.type;
+		std::cout << "\x1b[34m""[Cure]: copy operator - nothing happened""\x1b[0m" << std::endl;
 	}
 	return (*this);
 }
 
 AMateria* Cure::clone() const {
-	return (new Cure());
+	AMateria* tmp = new Cure(*this);
+	return (tmp);
 }
 
 void Cure::use(ICharacter& target) {

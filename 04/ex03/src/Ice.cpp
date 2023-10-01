@@ -18,14 +18,15 @@ Ice::~Ice() {
 
 Ice&	Ice::operator=(const Ice& ref) {
 	if (this != &ref) {
-		//same as deep-copy
+		// this->type = ref.type;
 		std::cout << "\x1b[34m""[Ice]: copy operator has called!""\x1b[0m" << std::endl;
 	}
 	return (*this);
 }
 
 AMateria* Ice::clone() const {
-	return (new Ice());
+	AMateria* tmp = new Ice(*this);
+	return (tmp);
 }
 
 void Ice::use(ICharacter& target) {

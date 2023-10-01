@@ -5,13 +5,12 @@
 
 class Ice: public AMateria {
 	private:
+		Ice(const Ice& ref);
+		Ice&	operator=(const Ice& ref);
 
 	public:
 		Ice();
-		Ice(const Ice& ref);
 		~Ice();
-
-		Ice&	operator=(const Ice& ref);
 
 		AMateria* clone() const;
 		void use(ICharacter& target);

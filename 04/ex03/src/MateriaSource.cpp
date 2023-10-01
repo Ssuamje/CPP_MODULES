@@ -13,26 +13,46 @@ MateriaSource::MateriaSource(const MateriaSource& ref) {
 
 MateriaSource::~MateriaSource() {
 	std::cout << "\x1b[31m""[MateriaSource]: destructor has called!""\x1b[0m" << std::endl;
+	for (int i = 0; i < MateriaSource::CAPACITY; i++) {
+		if (this->store[i] != NULL) {
+			delete this->store[i];
+			this->store[i] = NULL;
+		}
+	}
 }
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& ref) {
-	std::cout << "\x1b[34m""[MateriaSource]: copy operator has called!""\x1b[0m" << std::endl;
 	if (this != &ref) {
-		//Nothing
+		std::cout << "\x1b[34m""[MateriaSource]: copy operator has called!""\x1b[0m" << std::endl;
+		for (int i = 0; i < MateriaSource::CAPACITY; i++) {
+			if (this->store[i] != NULL) {
+				delete this->store[i];
+				this->store[i] = NULL;
+			}
+			this->store[i] = ref.store[i]->clone();
+		}
 	}
-	throw std::runtime_error("Factory cannot be assigned to another!\n");
+	else
+		std::cout << "\x1b[34m""[MateriaSource]: copy operator with same instance!""\x1b[0m" << std::endl;
+	return (*this);
 }
 
 void MateriaSource::learnMateria(AMateria* m) {
 	for (int i = 0; i < MateriaSource::CAPACITY; i++) {
-        if (this->inventory[i] == NULL) {
-            this->inventory[i] = m;
+        if (this->store[i] == NULL) {
+            this->store[i] = m;
             break ;
         }
     }
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
-	//implement
+	if (type.empty())
+		return (NULL);
+	for (int i = 0; i < MateriaSource::CAPACITY; i++) {
+		if (this->store[i] != NULL && this->store[i]->getType() == type) {
+			return (this->store[i]->clone());
+		}
+	}
 	return (NULL);
 }

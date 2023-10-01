@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 17:23:12 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/29 17:07:36 by sanan            ###   ########.fr       */
+/*   Updated: 2023/09/29 20:19:32 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ Character::Character() {
 Character::Character(Character const &ref) {
     *this = ref;
     std::cout << "\x1b[35m""[Character]: deep-copy constructor has called!""\x1b[0m" << std::endl;
+}
+
+Character::Character(std::string name) {
+    this->name = name;
+    for (int i = 0; i < Character::CAPACITY; i++)
+        this->inventory[i] = NULL;
+    std::cout << "\x1b[33m""[Character]: name constructor has called!""\x1b[0m" << std::endl;
 }
 
 Character::~Character() {
