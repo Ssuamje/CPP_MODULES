@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:59:18 by sanan             #+#    #+#             */
-/*   Updated: 2023/09/26 13:03:42 by sanan            ###   ########.fr       */
+/*   Updated: 2023/10/01 21:34:10 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ Dog::~Dog() {
 Dog&	Dog::operator=(Dog const &ref) {
     if (this != &ref) {
         this->type = ref.getType();
-        this->brain = ref.brain;
+        if (this->brain)
+            delete this->brain;
+        this->brain = new Brain(*ref.brain);
         std::cout << "\x1b[34m""[Dog]: assign operator has called!""\x1b[0m" << std::endl;
     }
     else
