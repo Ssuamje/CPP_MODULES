@@ -25,11 +25,6 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat const &ref) {
     return (*this);
 }
 
-std::ostream&	operator<<(std::ostream& os, Bureaucrat const &ref) {
-    os << "\x1b[32m""[Bureaucrat]: " << ref.getName() << ", bureaucrat grade " << ref.getGrade() << ".""\x1b[0m" << std::endl;
-    return (os);
-}
-
 const std::string& Bureaucrat::getName() const {
     return (this->name);
 }
@@ -50,17 +45,23 @@ void Bureaucrat::decrementGrade() {
     this->grade++;
 }
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) {
-    if (this->grade < 1)
+Bureaucrat::Bureaucrat(const std::string& name, int grade): name(name) {
+    if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
-    if (this->grade > 150)
+    if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
+    this->grade = grade;
 }
 
-const char* Bureaucrat::GradeTooHighException::message() const throw() {
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
     return ("Grade is too high!");
 }
 
-const char* Bureaucrat::GradeTooLowException::message() const throw() {
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
     return ("Grade is too low!");
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& ref) {
+    os << "\x1b[32m""[Bureaucrat]: " << ref.getName() << ", bureaucrat grade " << ref.getGrade() << ".""\x1b[0m";
+    return (os);
 }

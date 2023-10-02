@@ -6,13 +6,14 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/04/12 09:26:12 by sanan            ###   ########.fr        #
+#    Updated: 2023/10/02 15:08:07 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = name
+NAME = bureaucrat
 
 SRC_FILES =\
+Bureaucrat.cpp\
 main.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)

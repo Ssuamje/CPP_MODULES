@@ -23,15 +23,15 @@ class Bureaucrat {
 
         class GradeTooHighException : public std::exception {
             public:
-                virtual const char* what() const throw(); // throw()는 예약어로서, NoExcept로 이 함수는 절대로 예외를 뱉지 않음을 얘기한다.
+                virtual const char* what() const throw (); // throw()는 예약어로서, NoExcept로 이 함수는 절대로 예외를 뱉지 않음을 얘기한다.
         };
 
         class GradeTooLowException : public std::exception {
             public:
-                virtual const char* what() const throw();
+                virtual const char* what() const throw ();
         };
 };
 
-
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& ref);
 
 #endif
