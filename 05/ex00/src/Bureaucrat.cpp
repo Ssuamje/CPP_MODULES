@@ -17,7 +17,7 @@ Bureaucrat::~Bureaucrat() {
 
 Bureaucrat&	Bureaucrat::operator=(Bureaucrat const &ref) {
     if (this != &ref) {
-        //compose deep-copy with your own class!
+        this->grade = ref.grade;
         std::cout << "\x1b[34m""[Bureaucrat]: assign operator has called!""\x1b[0m" << std::endl;
     }
     else
