@@ -6,7 +6,7 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/10/02 15:52:51 by sanan            ###   ########.fr        #
+#    Updated: 2023/10/02 16:07:44 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = multiform
 
 SRC_FILES =\
 Bureaucrat.cpp\
-Form.cpp\
+AForm.cpp\
 main.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
