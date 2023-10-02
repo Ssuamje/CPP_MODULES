@@ -18,6 +18,11 @@ class ShrubberyCreationForm: public AForm {
 
         void        execute(const Bureaucrat& executor) const;
         std::string getTarget() const;
+
+        class FileOpenException: public std::exception {
+            public:
+                virtual const char* what() const throw();
+        };
 };
 
 #endif
