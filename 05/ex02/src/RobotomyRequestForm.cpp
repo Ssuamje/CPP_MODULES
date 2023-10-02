@@ -2,6 +2,8 @@
 
 #include "../include/RobotomyRequestForm.hpp"
 
+static int times = 0;
+
 RobotomyRequestForm::RobotomyRequestForm(): AForm("RobotomyRequestForm", 72, 45) {
     std::cout << "\x1b[33m""[RobotomyRequestForm]: default constructor has called!""\x1b[0m" << std::endl;
 }
@@ -34,3 +36,16 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=(RobotomyRequestForm const &r
         std::cout << "\x1b[34m""[RobotomyRequestForm]: assign operator with same instance!""\x1b[0m" << std::endl;
     return (*this);
 }
+
+void RobotomyRequestForm::execute(Bureaucrat const &ref) const {
+    if (ref.getGrade() > this->gradeToExecute)
+        throw AForm::GradeTooLowException();
+    if (!this->isSigned)
+        throw AForm::FormNotSignedException();
+    if (times++ %2) {
+        std::cout << "\x1b[32m""[RobotomyRequestForm]: (Drilling....) " << this->target << " has been robotomized successfully 50% of the time""\x1b[0m" << std::endl;
+    } else {
+        std::cout << "\x1b[31m""[RobotomyRequestForm]: " << this->target << " has been robotomized failure 50% of the time""\x1b[0m" << std::endl;
+    }
+}
+
