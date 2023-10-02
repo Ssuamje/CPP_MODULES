@@ -6,7 +6,7 @@ Bureaucrat::Bureaucrat() {
     std::cout << "\x1b[33m""[Bureaucrat]: default constructor has called!""\x1b[0m" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &ref): name(ref.getName()) {
+Bureaucrat::Bureaucrat(Bureaucrat const &ref) {
     *this = ref;
     std::cout << "\x1b[35m""[Bureaucrat]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
@@ -43,6 +43,16 @@ void Bureaucrat::decrementGrade() {
     if (this->grade + 1 > 150)
         throw Bureaucrat::GradeTooLowException();
     this->grade++;
+}
+
+void Bureaucrat::signForm(Form& ref) {
+    try {
+        ref.beSigned(*this);
+        std::cout << "\x1b[32m""[Bureaucrat]: " << this->name << " signed " << ref.getName() << ".""\x1b[0m" << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout << "\x1b[31m""[Bureaucrat]: " << this->name << " couldn't sign " << ref.getName() << " because " << e.what() << "\x1b[0m" << std::endl;
+    }
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade): name(name) {
