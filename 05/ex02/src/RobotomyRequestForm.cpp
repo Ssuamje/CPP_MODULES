@@ -2,11 +2,11 @@
 
 #include "../include/RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() {
+RobotomyRequestForm::RobotomyRequestForm(): AForm("RobotomyRequestForm", 72, 45) {
     std::cout << "\x1b[33m""[RobotomyRequestForm]: default constructor has called!""\x1b[0m" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &ref) {
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &ref): AForm(ref.getName(), ref.getGradeToSign(), ref.getGradeToExecute()) {
     *this = ref;
     std::cout << "\x1b[35m""[RobotomyRequestForm]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
@@ -17,7 +17,8 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 
 RobotomyRequestForm&	RobotomyRequestForm::operator=(RobotomyRequestForm const &ref) {
     if (this != &ref) {
-        //compose deep-copy with your own class!
+        this->target = ref.getTarget();
+        this->isSigned = ref.getIsSigned();
         std::cout << "\x1b[34m""[RobotomyRequestForm]: assign operator has called!""\x1b[0m" << std::endl;
     }
     else

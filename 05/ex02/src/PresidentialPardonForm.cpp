@@ -2,11 +2,12 @@
 
 #include "../include/PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() {
+PresidentialPardonForm::PresidentialPardonForm(): AForm("PresidentialPardonForm", 25, 5) {
     std::cout << "\x1b[33m""[PresidentialPardonForm]: default constructor has called!""\x1b[0m" << std::endl;
+    this->target = "default";
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &ref) {
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &ref): AForm(ref.getName(), ref.getGradeToSign(), ref.getGradeToExecute()) {
     *this = ref;
     std::cout << "\x1b[35m""[PresidentialPardonForm]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
@@ -17,7 +18,8 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 
 PresidentialPardonForm&	PresidentialPardonForm::operator=(PresidentialPardonForm const &ref) {
     if (this != &ref) {
-        //compose deep-copy with your own class!
+        this->target = ref.getTarget();
+        this->isSigned = ref.getIsSigned();
         std::cout << "\x1b[34m""[PresidentialPardonForm]: assign operator has called!""\x1b[0m" << std::endl;
     }
     else

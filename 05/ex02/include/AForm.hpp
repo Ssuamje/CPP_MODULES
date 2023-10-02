@@ -6,15 +6,13 @@
 
 class Bureaucrat;
 class AForm {
-
-    private:
-        AForm();
+    protected:
         const std::string   name;
         bool                isSigned;
         const int           gradeToSign;
         const int           gradeToExecute;
 
-    protected:
+        AForm();
         AForm(const AForm& ref);
         AForm(const std::string& name, int gradeToSign, int gradeToExecute);
 
