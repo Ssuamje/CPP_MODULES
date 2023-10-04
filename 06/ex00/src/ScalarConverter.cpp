@@ -24,7 +24,6 @@ ScalarConverter&	ScalarConverter::operator=(ScalarConverter const &ref) {
     return (*this);
 }
 
-//header
 bool ScalarConverter::isNan(std::string input) {
     return (input == "nan" || input == "nanf");
 }
@@ -53,13 +52,11 @@ bool ScalarConverter::isAscii(char c) {
 }
 
 bool ScalarConverter::isNotEmptyAndStartsWithConvertable(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: isNotEmptyAndStartsWithConvertable function has called!""\x1b[0m" << std::endl;
     return (input.size() > 0 && 
     (std::isdigit(input[0]) || isSigned(input) || isAscii(input[0])));
 }
 
 bool ScalarConverter::isSignedMoreThanOnce(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: isSignedMoreThanOnce function has called!""\x1b[0m" << std::endl;
     int signCount = 0;
 
     for (size_t i = 0; i < input.size(); i++) {
@@ -70,7 +67,6 @@ bool ScalarConverter::isSignedMoreThanOnce(std::string input) {
 }
 
 bool ScalarConverter::isDottedCorrectly(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: isDottedCorrectly function has called!""\x1b[0m" << std::endl;
     int dotCount = 0;
     std::string det = input;
 
@@ -87,7 +83,6 @@ bool ScalarConverter::isDottedCorrectly(std::string input) {
 }
 
 bool ScalarConverter::isEndsWithFOrNumber(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: isEndsWithFOrNumber function has called!""\x1b[0m" << std::endl;
     return ((input.length() == 1 && (isAscii(input[0])))
     || (isSigned(input) && isAvailablePseudoLiteral(input.substr(1, input.size() - 1)))
     || input[input.size() - 1] == 'f'
@@ -96,19 +91,15 @@ bool ScalarConverter::isEndsWithFOrNumber(std::string input) {
 }
 
 bool ScalarConverter::isStartsWithAlphabetAndEndsWithNumeric(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: isStartsWithPrintableAndEndsWithOther function has called!""\x1b[0m" << std::endl;
     return ((('a' <= input[0] && input[0] <= 'z') || ('A' <= input[0] && input[0] <= 'Z'))
         && std::isdigit(input[input.size() - 1]));
 }
 
 double ScalarConverter::stringToDouble(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: stringToDouble function has called!""\x1b[0m" << std::endl;
-
     std::string det = input;
     double value;
     char *end = NULL;
 
-    std::cout << "det = " << det << std::endl;
     if (isAvailablePseudoLiteral(det) || 
     (isNotEmptyAndStartsWithConvertable(det) 
     && !isSignedMoreThanOnce(det)
@@ -128,7 +119,7 @@ double ScalarConverter::stringToDouble(std::string input) {
 
 void ScalarConverter::putAsChar(double value) {
     if (std::isnan(value) || std::isinf(value)
-    || (value < std::numeric_limits<char>::min() 
+    || (value < 0 
         || value > std::numeric_limits<char>::max()))
         std::cout << "char: impossible" << std::endl;
     else if (!isPrintable(value))
@@ -149,8 +140,7 @@ void ScalarConverter::putAsInt(double value) {
 void ScalarConverter::putAsFloat(double value) {
     if (std::isnan(value) || std::isinf(value))
         std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
-    else if (value < std::numeric_limits<float>::min() 
-        || value > std::numeric_limits<float>::max())
+    else if (value < -__FLT_MAX__|| value > __FLT_MAX__)
         std::cout << "float: impossible" << std::endl;
     else if (value == static_cast<int>(value))
         std::cout << "float: " << static_cast<float>(value) << ".0f" << std::endl;
@@ -161,8 +151,8 @@ void ScalarConverter::putAsFloat(double value) {
 void ScalarConverter::putAsDouble(double value) {
     if (std::isnan(value) || std::isinf(value))
         std::cout << "double: " << static_cast<double>(value) << std::endl;
-    else if (value < std::numeric_limits<double>::min() 
-        || value > std::numeric_limits<double>::max())
+    else if (value < -__DBL_MAX__
+        || value > __DBL_MAX__)
         std::cout << "double: impossible" << std::endl;
     else if (value == static_cast<int>(value))
         std::cout << "double: " << static_cast<double>(value) << ".0" << std::endl;
@@ -174,7 +164,6 @@ void ScalarConverter::convert(std::string input) {
     double value;
 
     value = stringToDouble(input);
-    std::cout << "value = " << value << std::endl;
     putAsChar(value);
     putAsInt(value);
     putAsFloat(value);
