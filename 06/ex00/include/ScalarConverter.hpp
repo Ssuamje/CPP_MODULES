@@ -35,13 +35,6 @@ class ScalarConverter {
         class IllegalArgumentException: public std::exception {
             virtual const char* what() const throw();
         };
-        class ImpossibleConversionException: public std::exception {
-            virtual const char* what() const throw();
-        };
-        class NonDisplayableInputException: public std::exception {
-            virtual const char* what() const throw();
-        };
-
 };
 
 #endif

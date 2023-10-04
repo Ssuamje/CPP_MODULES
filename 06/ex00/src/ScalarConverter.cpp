@@ -172,11 +172,3 @@ void ScalarConverter::convert(std::string input) {
 const char* ScalarConverter::IllegalArgumentException::what() const throw() {
     return ("illegal argument");
 }
-
-const char* ScalarConverter::ImpossibleConversionException::what() const throw() {
-    return ("impossible");
-}
-
-const char* ScalarConverter::NonDisplayableInputException::what() const throw() {
-    return ("Non displayable");
-}
