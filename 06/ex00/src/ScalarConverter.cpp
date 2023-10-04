@@ -148,12 +148,7 @@ void ScalarConverter::convert(std::string input) {
     std::cout << "\x1b[32m""[ScalarConverter]: convert function has called!""\x1b[0m" << std::endl;
     double value;
 
-    try {
-        value = stringToDouble(input);
-    } catch (std::exception &e) {
-        std::cout << "\x1b[31m""[ScalarConverter] : Can't execute because of " << e.what() << std::endl;
-        exit(1);
-    }
+    value = stringToDouble(input);
     std::cout << "value = " << value << std::endl;
 }
 

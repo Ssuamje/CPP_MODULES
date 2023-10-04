@@ -9,8 +9,13 @@ int main(int ac, char **av) {
         std::cout << "Usage: ./convert [Numeric]" << std::endl;
         return (EXIT_FAILURE);
     }
-    ScalarConverter::convert(av[1]);
+    try {
+        ScalarConverter::convert(av[1]);
+    } catch (std::exception &e) {
+        std::cout << "\x1b[31m""[ScalarConverter] : Can't execute because of " << e.what() << std::endl;
+        return(EXIT_FAILURE);
+    }
 
     // atexit(leaks);
-    return 0;
+    return EXIT_SUCCESS;
 }
