@@ -151,8 +151,7 @@ void ScalarConverter::putAsFloat(double value) {
 void ScalarConverter::putAsDouble(double value) {
     if (std::isnan(value) || std::isinf(value))
         std::cout << "double: " << static_cast<double>(value) << std::endl;
-    else if (value < -__DBL_MAX__
-        || value > __DBL_MAX__)
+    else if (value < -__DBL_MAX__ || value > __DBL_MAX__)
         std::cout << "double: impossible" << std::endl;
     else if (value == static_cast<int>(value))
         std::cout << "double: " << static_cast<double>(value) << ".0" << std::endl;
