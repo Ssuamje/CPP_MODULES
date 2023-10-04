@@ -25,50 +25,42 @@ ScalarConverter&	ScalarConverter::operator=(ScalarConverter const &ref) {
 }
 
 //header
-bool isNan(std::string input) {
-    if (input == "nan" || input == "nanf")
-        return (true);
-    return (false);
+bool ScalarConverter::isNan(std::string input) {
+    return (input == "nan" || input == "nanf");
 }
 
-bool isInf(std::string input) {
-    if (input == "inf" || input == "inff")
-        return (true);
-    return (false);
+bool ScalarConverter::isInf(std::string input) {
+    return (input == "inf" || input == "inff");
 }
 
-bool isAvailablePseudoLiteral(std::string input) {
-    if (input == "nan" || input == "nanf"
+bool ScalarConverter::isAvailablePseudoLiteral(std::string input) {
+    return (input == "nan" || input == "nanf"
     || input == "inf" || input == "inff"
     || input == "+inf" || input == "+inff"
-    || input == "-inf" || input == "-inff")
-        return (true);
-    return (false);
+    || input == "-inf" || input == "-inff");
 }
 
-bool isSigned(std::string input) {
-    if (input[0] == '-' || input[0] == '+')
-        return (true);
-    return (false);
+bool ScalarConverter::isSigned(std::string input) {
+    return (input[0] == '-' || input[0] == '+');
 }
 
-bool isPrintable(char c) {
-    if (32 <= c && c <= 126)
-        return (true);
-    return (false);
+bool ScalarConverter::isPrintable(char c) {
+    return (32 <= c && c <= 126);
 }
 
-bool isNotEmptyAndStartsWithConvertable(std::string input) {
+bool ScalarConverter::isAscii(char c) {
+    return (0 <= c && c <= 127);
+}
+
+bool ScalarConverter::isNotEmptyAndStartsWithConvertable(std::string input) {
     std::cout << "\x1b[32m""[ScalarConverter]: isNotEmptyAndStartsWithConvertable function has called!""\x1b[0m" << std::endl;
-    if (input.size() > 0 && (
-        std::isdigit(input[0]) || isSigned(input) || isPrintable(input[0])))
-        return (true);
-    return (false);
+    return (input.size() > 0 && 
+    (std::isdigit(input[0]) || isSigned(input) || isAscii(input[0])));
 }
 
-bool isSignedMoreThanOnce(std::string input) {
+bool ScalarConverter::isSignedMoreThanOnce(std::string input) {
     std::cout << "\x1b[32m""[ScalarConverter]: isSignedMoreThanOnce function has called!""\x1b[0m" << std::endl;
-    unsigned int signCount = 0;
+    int signCount = 0;
 
     for (size_t i = 0; i < input.size(); i++) {
         if (input[i] == '-' || input[i] == '+')
@@ -77,7 +69,7 @@ bool isSignedMoreThanOnce(std::string input) {
     return (signCount > 1);
 }
 
-bool isDottedCorrectly(std::string input) {
+bool ScalarConverter::isDottedCorrectly(std::string input) {
     std::cout << "\x1b[32m""[ScalarConverter]: isDottedCorrectly function has called!""\x1b[0m" << std::endl;
     int dotCount = 0;
     std::string det = input;
@@ -94,29 +86,19 @@ bool isDottedCorrectly(std::string input) {
     return (dotCount == 0 || dotCount == 1);
 }
 
-bool isEndsWithFOrNumber(std::string input) {
+bool ScalarConverter::isEndsWithFOrNumber(std::string input) {
     std::cout << "\x1b[32m""[ScalarConverter]: isEndsWithFOrNumber function has called!""\x1b[0m" << std::endl;
-    if ((input.length() == 1 && isPrintable(input[0]))
+    return ((input.length() == 1 && (isAscii(input[0])))
+    || (isSigned(input) && isAvailablePseudoLiteral(input.substr(1, input.size() - 1)))
     || input[input.size() - 1] == 'f'
     || input[input.size() - 1] == 'F'
-    || std::isdigit(input[input.size() - 1]))
-        return (true);
-    return (false);
+    || std::isdigit(input[input.size() - 1]));
 }
 
-bool isStartsWithAlphabetAndEndsWithNumeric(std::string input) {
+bool ScalarConverter::isStartsWithAlphabetAndEndsWithNumeric(std::string input) {
     std::cout << "\x1b[32m""[ScalarConverter]: isStartsWithPrintableAndEndsWithOther function has called!""\x1b[0m" << std::endl;
-    if ((('a' <= input[0] && input[0] <= 'z') || ('A' <= input[0] && input[0] <= 'Z'))
-    && std::isdigit(input[input.size() - 1]))
-        return (true);
-    return (false);
-}
-
-bool isPrintableChar(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: isChar function has called!""\x1b[0m" << std::endl;
-    if (input.length() == 1 && isPrintable(input[0]))
-        return (true);
-    return (false);
+    return ((('a' <= input[0] && input[0] <= 'z') || ('A' <= input[0] && input[0] <= 'Z'))
+        && std::isdigit(input[input.size() - 1]));
 }
 
 double ScalarConverter::stringToDouble(std::string input) {
@@ -134,7 +116,7 @@ double ScalarConverter::stringToDouble(std::string input) {
     && isEndsWithFOrNumber(det)
     && !isStartsWithAlphabetAndEndsWithNumeric(det))
     ) {
-        if (isPrintableChar(det))
+        if (input.length() == 1 && !std::isdigit(det[0]))
             value = static_cast<double>(det[0]);
         else
             value = std::strtod(det.c_str(), &end);
@@ -144,12 +126,59 @@ double ScalarConverter::stringToDouble(std::string input) {
     return (value);
 }
 
+void ScalarConverter::putAsChar(double value) {
+    if (std::isnan(value) || std::isinf(value)
+    || (value < std::numeric_limits<char>::min() 
+        || value > std::numeric_limits<char>::max()))
+        std::cout << "char: impossible" << std::endl;
+    else if (!isPrintable(value))
+        std::cout << "char: Non Displayable" << std::endl;
+    else
+        std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+}
+
+void ScalarConverter::putAsInt(double value) {
+    if (std::isnan(value) || std::isinf(value)
+    || (value < std::numeric_limits<int>::min() 
+        || value > std::numeric_limits<int>::max()))
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(value) << std::endl;
+}
+
+void ScalarConverter::putAsFloat(double value) {
+    if (std::isnan(value) || std::isinf(value))
+        std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
+    else if (value < std::numeric_limits<float>::min() 
+        || value > std::numeric_limits<float>::max())
+        std::cout << "float: impossible" << std::endl;
+    else if (value == static_cast<int>(value))
+        std::cout << "float: " << static_cast<float>(value) << ".0f" << std::endl;
+    else
+        std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
+}
+
+void ScalarConverter::putAsDouble(double value) {
+    if (std::isnan(value) || std::isinf(value))
+        std::cout << "double: " << static_cast<double>(value) << std::endl;
+    else if (value < std::numeric_limits<double>::min() 
+        || value > std::numeric_limits<double>::max())
+        std::cout << "double: impossible" << std::endl;
+    else if (value == static_cast<int>(value))
+        std::cout << "double: " << static_cast<double>(value) << ".0" << std::endl;
+    else
+        std::cout << "double: " << static_cast<double>(value) << std::endl;
+}
+
 void ScalarConverter::convert(std::string input) {
-    std::cout << "\x1b[32m""[ScalarConverter]: convert function has called!""\x1b[0m" << std::endl;
     double value;
 
     value = stringToDouble(input);
     std::cout << "value = " << value << std::endl;
+    putAsChar(value);
+    putAsInt(value);
+    putAsFloat(value);
+    putAsDouble(value);
 }
 
 const char* ScalarConverter::IllegalArgumentException::what() const throw() {
