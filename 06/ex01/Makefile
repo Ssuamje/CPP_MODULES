@@ -6,14 +6,15 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/10/02 21:29:36 by sanan            ###   ########.fr        #
+#    Updated: 2023/10/04 22:35:58 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = name
+NAME = serializer
 
 SRC_FILES =\
-ScalarConverter.cpp\
+Data.cpp\
+Serializer.cpp\
 main.cpp
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
