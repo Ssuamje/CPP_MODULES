@@ -1,6 +1,6 @@
 #include "iter.hpp"
 
-void print_int(int const &i) {
+void printInt(int const &i) {
     std::cout << i << " ";
 }
 
@@ -12,6 +12,6 @@ int main() {
         std::cout << intArray[i] << " ";
     std::cout << std::endl;
 
-    ::iter(intArray, 5, print_int);
+    ::iter(intArray, 5, printInt);
     return 0;
 }
