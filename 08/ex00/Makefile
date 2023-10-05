@@ -6,11 +6,11 @@
 #    By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 17:05:58 by sanan             #+#    #+#              #
-#    Updated: 2023/10/05 22:25:08 by sanan            ###   ########.fr        #
+#    Updated: 2023/10/05 22:26:06 by sanan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = vector
+NAME = easyfind
 
 SRC_FILES =\
 main.cpp
