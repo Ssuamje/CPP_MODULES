@@ -2,12 +2,11 @@
 
 #include "../include/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat():name("default") {
+Bureaucrat::Bureaucrat() {
     std::cout << "\x1b[33m""[Bureaucrat]: default constructor has called!""\x1b[0m" << std::endl;
-    this->grade = 150;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &ref): name(ref.getName()) {
+Bureaucrat::Bureaucrat(Bureaucrat const &ref) {
     *this = ref;
     std::cout << "\x1b[35m""[Bureaucrat]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
@@ -36,21 +35,41 @@ int Bureaucrat::getGrade() const {
 
 void Bureaucrat::incrementGrade() {
     if (this->grade - 1 < 1)
-        throw GradeTooHighException();
+        throw Bureaucrat::GradeTooHighException();
     this->grade--;
 }
 
 void Bureaucrat::decrementGrade() {
     if (this->grade + 1 > 150)
-        throw GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
     this->grade++;
+}
+
+void Bureaucrat::signForm(AForm& ref) {
+    try {
+        ref.beSigned(*this);
+        std::cout << "\x1b[32m""[Bureaucrat]: " << this->name << " signed " << ref.getName() << ".""\x1b[0m" << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout << "\x1b[31m""[Bureaucrat]: " << this->name << " couldn't sign " << ref.getName() << " because " << e.what() << "\x1b[0m" << std::endl;
+    }
+}
+
+void Bureaucrat::executeForm(AForm const &form) {
+    try {
+        form.execute(*this);
+        std::cout << "\x1b[32m""[Bureaucrat]: " << this->name << " executed " << form.getName() << ".""\x1b[0m" << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout << "\x1b[31m""[Bureaucrat]: " << this->name << " couldn't execute " << form.getName() << " because " << e.what() << "\x1b[0m" << std::endl;
+    }
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade): name(name) {
     if (grade < 1)
-        throw GradeTooHighException();
+        throw Bureaucrat::GradeTooHighException();
     if (grade > 150)
-        throw GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
     this->grade = grade;
 }
 
