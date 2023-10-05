@@ -18,6 +18,17 @@ int main() {
     // std::cout << sp2.shortestSpan() << std::endl;
     // std::cout << sp.longestSpan() << std::endl;
     // std::cout << sp2.longestSpan() << std::endl;
+    /* 예제 테스트 */
+    Span test = Span(5);
+
+    test.addNumber(6);
+    test.addNumber(3);
+    test.addNumber(17);
+    test.addNumber(9);
+    test.addNumber(11);
+
+    std::cout << test.shortestSpan() << std::endl; // 2
+    std::cout << test.longestSpan() << std::endl; // 14
 
     /* 작동 테스트 */
     Span sp = Span(10000);
