@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
 
 class BitcoinExchange {
     private:
+        std::map<std::string, double> data;
 
     public:
         const static std::string DEFAULT_FILE_DIRECTORY;
@@ -16,9 +18,14 @@ class BitcoinExchange {
 
         BitcoinExchange&	operator=(const BitcoinExchange& ref);
 
-        void   readCSV(std::string filename);
+        void   readCsv(std::string filename);
 
         class FileOpenException : public std::exception {
+            public:
+                virtual const char* what() const throw();
+        };
+
+        class InvalidDataException : public std::exception {
             public:
                 virtual const char* what() const throw();
         };

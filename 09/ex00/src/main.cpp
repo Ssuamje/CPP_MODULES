@@ -21,7 +21,7 @@ int main() {
     // line by line으로 수행한다. - 에러시 문구를 출력하고 종료하지 않는다.
 
     BitcoinExchange be = BitcoinExchange();
-    be.readCSV(BitcoinExchange::DEFAULT_FILE_DIRECTORY);
+    be.readCsv(BitcoinExchange::DEFAULT_FILE_DIRECTORY);
 
     return 0;
 }
