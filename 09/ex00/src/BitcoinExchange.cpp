@@ -51,8 +51,9 @@ bool    isInCharset(std::string str, std::string charset) {
     return (true);
 }
 
-bool    isFirstLineValid(std::string line) {
-    std::string* splited = split(line, ",");
+bool    isFirstLineValid(std::string line, std::string delimiter) {
+    std::string* splited = split(line, delimiter);
+
     if (splited == NULL)
         return (false);
     delete[] splited;
@@ -61,6 +62,7 @@ bool    isFirstLineValid(std::string line) {
 
 int     countSplitted(std::string* splitted) {
     int count = 0;
+
     while (!splitted[count].empty()) {
         count++;
     }
@@ -163,10 +165,12 @@ void	BitcoinExchange::readCsv(std::string directory) {
         throw FileOpenException();
     std::string line;
     std::getline(ifs, line);
-    if (!isFirstLineValid(line))
+    if (!isFirstLineValid(line, ","))
         throw InvalidDataException();
     while (std::getline(ifs, line)) {
         std::string* splitted = split(line, ",");
+        if (splitted == NULL)
+            throw InvalidDataException();
         std::string key = splitted[0];
         std::string value = splitted[1];
         if (countSplitted(splitted) != 2
@@ -175,6 +179,36 @@ void	BitcoinExchange::readCsv(std::string directory) {
             throw InvalidDataException();
         delete[] splitted;
         this->data.insert(std::pair<std::string, double>(key, std::strtod(value.c_str(), NULL)));
+    }
+    ifs.close();
+}
+
+void    BitcoinExchange::readArgumentFile(std::string directory) {
+    std::ifstream ifs;
+
+    ifs.open(directory);
+    if (!ifs.is_open())
+        throw FileOpenException();
+    std::string line;
+    std::getline(ifs, line);
+    if (!isFirstLineValid(line, "|"))
+        throw InvalidDataException();
+
+    while (std::getline(ifs, line)) {
+        std::cout << "line = " << line << std::endl;
+        std::string* splitted = split(line, "|");
+        if (splitted == NULL)
+            throw InvalidDataException();
+        std::string key = splitted[0];
+        std::string value = splitted[1];
+        std::cout << key << " " << value << std::endl;
+        if (countSplitted(splitted) != 2
+        ||  !isDateFormatted(key)
+        ||  !isFloatFormatted(value))
+            throw InvalidDataException();
+        delete[] splitted;
+        this->data.insert(std::pair<std::string, double>(key, std::strtod(value.c_str(), NULL)));
+        std::cout << key << " " << value << std::endl;
     }
     ifs.close();
 }

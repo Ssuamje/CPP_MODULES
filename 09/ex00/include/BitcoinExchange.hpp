@@ -18,7 +18,8 @@ class BitcoinExchange {
 
         BitcoinExchange&	operator=(const BitcoinExchange& ref);
 
-        void   readCsv(std::string filename);
+        void   readCsv(std::string directory);
+        void   readArgumentFile(std::string directory);
 
         class FileOpenException : public std::exception {
             public:
