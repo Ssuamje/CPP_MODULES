@@ -10,7 +10,12 @@
 
 #include "BitcoinExchange.hpp"
 
+void leaks() {
+    system("leaks btc");
+}
+
 int main(int ac, char** av) {
+    // atexit(leaks);
     if (ac != 2) {
         std::cout << "Usage: ./btc [path_to_file]" << std::endl;
         return (1);
@@ -26,6 +31,6 @@ int main(int ac, char** av) {
     // 알맞게 파싱되어있는지, 잘못된 값은 없는지 확인(양수인 int 범위의 float)
     // line by line으로 수행한다. - 에러시 문구를 출력하고 종료하지 않는다.
     be.readArgumentFile(av[1]);
-
+    
     return 0;
 }

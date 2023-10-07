@@ -25,7 +25,7 @@ BitcoinExchange&	BitcoinExchange::operator=(BitcoinExchange const &ref) {
     return (*this);
 }
 
-std::string* split(std::string str, std::string delimiter) {
+std::string* BitcoinExchange::split(std::string str, std::string delimiter) {
     size_t count = 0;
     for (size_t i = 0; i < str.length(); i++) {
         if (str[i] == delimiter[0])
@@ -43,7 +43,7 @@ std::string* split(std::string str, std::string delimiter) {
     return (ret);
 }
 
-bool    isInCharset(std::string str, std::string charset) {
+bool    BitcoinExchange::isInCharset(std::string str, std::string charset) {
     for (size_t i = 0; i < str.length(); i++) {
         if (charset.find(str[i]) == std::string::npos)
             return (false);
@@ -51,7 +51,7 @@ bool    isInCharset(std::string str, std::string charset) {
     return (true);
 }
 
-bool    isFirstLineValid(std::string line, std::string delimiter) {
+bool    BitcoinExchange::isFirstLineValid(std::string line, std::string delimiter) {
     std::string* splited = split(line, delimiter);
 
     if (splited == NULL)
@@ -60,32 +60,32 @@ bool    isFirstLineValid(std::string line, std::string delimiter) {
     return (true);
 }
 
-int     countSplitted(std::string* splitted) {
+int     BitcoinExchange::countSplitted(std::string* splitted) {
     int count = 0;
 
-    while (!splitted[count].empty()) {
+    while (splitted[count] != "") {
         count++;
     }
     return (count);
 }
 
-bool    isDateFormatted(std::string line) {
+void    BitcoinExchange::checkDateFormatted(std::string line) {
     std::string* splitted = split(line, "-");
     if (splitted == NULL)
-        return (false);
+        throw BadInputException();
     if (countSplitted(splitted) != 3) {
         delete[] splitted;
-        return (false);
+        throw BadInputException();
     }
     if (!isInCharset(splitted[0], "0123456789") 
     || !isInCharset(splitted[1], "0123456789") 
     || !isInCharset(splitted[2], "0123456789")) {
         delete[] splitted;
-        return (false);
+        throw BadInputException();
     }
     if (splitted[0].length() != 4 || splitted[1].length() != 2 || splitted[2].length() != 2) {
         delete[] splitted;
-        return (false);
+        throw BadInputException();
     }
 
     long year = std::strtol(splitted[0].c_str(), NULL, 10);
@@ -96,7 +96,7 @@ bool    isDateFormatted(std::string line) {
     || (month < 1 || month > 12)
     || (day < 1 || day > 31)) {
         delete[] splitted;
-        return (false);
+        throw BadInputException();
     }
 
     bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
@@ -105,11 +105,11 @@ bool    isDateFormatted(std::string line) {
         case 2:
             if (isLeapYear && day > 29) {
                 delete[] splitted;
-                return (false);
+                throw BadInputException();
             }
             else if (!isLeapYear && day > 28) {
                 delete[] splitted;
-                return (false);
+                throw BadInputException();
             }
             break;
         case 4:
@@ -118,43 +118,34 @@ bool    isDateFormatted(std::string line) {
         case 11:
             if (day > 30) {
                 delete[] splitted;
-                return (false);
+                throw BadInputException();
             }
             break;
         default:
             if (day > 31) {
                 delete[] splitted;
-                return (false);
+                throw BadInputException();
             }
     }
-
     delete[] splitted;
-    return (true);
 }
 
-bool    isNumericChar(char c) {
+bool    BitcoinExchange::isNumericChar(char c) {
     return ('0' <= c && c <= '9');
 }
 
-bool    isFloatFormatted(std::string str) {
-    if (!isInCharset(str, "0123456789."))
-        return (false);
-    if (!isNumericChar(str[0]) || !isNumericChar(str[str.length() - 1]))
-        return (false);
+void    BitcoinExchange::checkFloatFormatted(std::string str) {
+    if (!isInCharset(str, "0123456789.")
+    ||  !isNumericChar(str[0]) 
+    || !isNumericChar(str[str.length() - 1]))
+        throw IllegalValueException();
+
     int count = 0;
-    for (size_t i = 0; i < str.length(); i++) {
+    for (size_t i = 0; i < str.length(); i++)
         if (str[i] == '.')
             count++;
-    }
     if (count > 1)
-        return (false);
-    return (true);
-}
-
-bool    isValidEntry(std::string* splitted) {
-    std::string key = splitted[0];
-    std::string value = splitted[1];
-    return (isDateFormatted(key) && isFloatFormatted(value));
+        throw IllegalValueException();
 }
 
 void	BitcoinExchange::readCsv(std::string directory) {
@@ -173,10 +164,14 @@ void	BitcoinExchange::readCsv(std::string directory) {
             throw InvalidDataException();
         std::string key = splitted[0];
         std::string value = splitted[1];
-        if (countSplitted(splitted) != 2
-        ||  !isDateFormatted(key)
-        ||  !isFloatFormatted(value))
+        if (countSplitted(splitted) != 2)
             throw InvalidDataException();
+        try {
+            checkDateFormatted(key);
+            checkFloatFormatted(value);
+        } catch(const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
         delete[] splitted;
         this->data.insert(std::pair<std::string, double>(key, std::strtod(value.c_str(), NULL)));
     }
@@ -195,20 +190,25 @@ void    BitcoinExchange::readArgumentFile(std::string directory) {
         throw InvalidDataException();
 
     while (std::getline(ifs, line)) {
-        std::cout << "line = " << line << std::endl;
         std::string* splitted = split(line, "|");
-        if (splitted == NULL)
-            throw InvalidDataException();
+        try {
+            if (splitted == NULL)
+                throw BadInputException();
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << "\"" << line << "\""  << std::endl;
+            continue;
+        }
         std::string key = splitted[0];
         std::string value = splitted[1];
-        std::cout << key << " " << value << std::endl;
-        if (countSplitted(splitted) != 2
-        ||  !isDateFormatted(key)
-        ||  !isFloatFormatted(value))
-            throw InvalidDataException();
+        try {
+            if (countSplitted(splitted) != 2)
+                throw BadInputException();
+            checkDateFormatted(key);
+            checkFloatFormatted(value);
+        } catch(const std::exception& e) {
+            std::cerr << e.what() << "(key : " << "\"" << key << "\"" << ", value : " << "\"" << value << "\")" << std::endl;
+        }
         delete[] splitted;
-        this->data.insert(std::pair<std::string, double>(key, std::strtod(value.c_str(), NULL)));
-        std::cout << key << " " << value << std::endl;
     }
     ifs.close();
 }
@@ -219,6 +219,14 @@ const char* BitcoinExchange::FileOpenException::what() const throw() {
 
 const char* BitcoinExchange::InvalidDataException::what() const throw() {
     return ("[BitcoinExchange]: data is invalid!");
+}
+
+const char* BitcoinExchange::BadInputException::what() const throw() {
+    return ("[BitcoinExchange]: bad input => ");
+}
+
+const char* BitcoinExchange::IllegalValueException::what() const throw() {
+    return ("[BitcoinExchange]: value is not valid!");
 }
 
 
