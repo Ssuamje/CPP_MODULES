@@ -29,6 +29,7 @@ class BitcoinExchange {
         void    checkFloatFormatted(std::string line);
         std::string trimWhiteSpaces(std::string str);
         void    checkIntRangedNumericFloat(std::string str);
+        void    printDataByLowerBound(std::string key, std::string );
 
         class FileOpenException : public std::exception {
             public:

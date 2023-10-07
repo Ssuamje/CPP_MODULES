@@ -3,12 +3,13 @@
 const std::string BitcoinExchange::DEFAULT_FILE_DIRECTORY = "./data.csv";
 
 BitcoinExchange::BitcoinExchange() {
+    this->data = std::map<std::string, double>();
     std::cout << "\x1b[33m""[BitcoinExchange]: default constructor has called!""\x1b[0m" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &ref) {
-    *this = ref;
     std::cout << "\x1b[35m""[BitcoinExchange]: deep-copy constructor has called!""\x1b[0m" << std::endl;
+    *this = ref;
 }
 
 BitcoinExchange::~BitcoinExchange() {
@@ -17,8 +18,8 @@ BitcoinExchange::~BitcoinExchange() {
 
 BitcoinExchange&	BitcoinExchange::operator=(BitcoinExchange const &ref) {
     if (this != &ref) {
-        //compose deep-copy with your own class!
         std::cout << "\x1b[34m""[BitcoinExchange]: assign operator has called!""\x1b[0m" << std::endl;
+        this->data = ref.data;
     }
     else
         std::cout << "\x1b[34m""[BitcoinExchange]: assign operator with same instance!""\x1b[0m" << std::endl;
@@ -52,11 +53,11 @@ bool    BitcoinExchange::isInCharset(std::string str, std::string charset) {
 }
 
 bool    BitcoinExchange::isFirstLineValid(std::string line, std::string delimiter) {
-    std::string* splited = split(line, delimiter);
+    std::string* splitted = split(line, delimiter);
 
-    if (splited == NULL)
+    if (splitted == NULL || countSplitted(splitted) != 2)
         return (false);
-    delete[] splited;
+    delete[] splitted;
     return (true);
 }
 
@@ -195,6 +196,20 @@ void    BitcoinExchange::checkIntRangedNumericFloat(std::string str) {
         throw IllegalValueException();
 }
 
+void    BitcoinExchange::printDataByLowerBound(std::string key, std::string value) {
+    std::map<std::string, double>::iterator it = this->data.lower_bound(key);
+    if (it == this->data.begin())
+        throw BadInputException();
+    else if (it->first == key)
+        std::cout << key << " => " << it->second << std::endl;
+    else if (it == this->data.end())
+        std::cout << "No data" << std::endl;
+    else {
+        double processedValue = (--it)->second * std::strtod(value.c_str(), NULL);
+        std::cout << key << " => " << processedValue << std::endl;
+    }
+}
+
 void    BitcoinExchange::readArgumentFile(std::string directory) {
     std::ifstream ifs;
 
@@ -223,6 +238,7 @@ void    BitcoinExchange::readArgumentFile(std::string directory) {
             checkDateFormatted(key);
             checkFloatFormatted(value);
             checkIntRangedNumericFloat(value);
+            printDataByLowerBound(key, value);
         } catch(const std::exception& e) {
             std::cerr << e.what() << "(key : " << "\"" << key << "\"" << ", value : " << "\"" << value << "\")" << std::endl;
         }
@@ -246,6 +262,3 @@ const char* BitcoinExchange::BadInputException::what() const throw() {
 const char* BitcoinExchange::IllegalValueException::what() const throw() {
     return ("[BitcoinExchange]: value is not valid!");
 }
-
-
-//strcmp를 이용한 문자열 비교 후에 lower_bound를 이용해서 해당 근사 값을 찾아주자.
