@@ -6,7 +6,7 @@
 /*   By: sanan <sanan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:59:12 by sanan             #+#    #+#             */
-/*   Updated: 2023/10/01 21:34:04 by sanan            ###   ########.fr       */
+/*   Updated: 2023/10/07 13:48:35 by sanan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Cat::Cat() {
 }
 
 Cat::Cat(Cat const &ref) {
+    this->brain = NULL;
     *this = ref;
     std::cout << "\x1b[35m""[Cat]: deep-copy constructor has called!""\x1b[0m" << std::endl;
 }
