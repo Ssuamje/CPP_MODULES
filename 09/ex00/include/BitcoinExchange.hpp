@@ -11,7 +11,7 @@ class BitcoinExchange {
 
     public:
         const static std::string DEFAULT_FILE_DIRECTORY;
-        
+
         BitcoinExchange();
         BitcoinExchange(const BitcoinExchange& ref);
         ~BitcoinExchange();
@@ -27,6 +27,8 @@ class BitcoinExchange {
         bool    isNumericChar(char c);
         void    checkDateFormatted(std::string line);
         void    checkFloatFormatted(std::string line);
+        std::string trimWhiteSpaces(std::string str);
+        void    checkIntRangedNumericFloat(std::string str);
 
         class FileOpenException : public std::exception {
             public:

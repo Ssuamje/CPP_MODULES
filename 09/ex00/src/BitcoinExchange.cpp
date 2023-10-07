@@ -69,6 +69,17 @@ int     BitcoinExchange::countSplitted(std::string* splitted) {
     return (count);
 }
 
+std::string BitcoinExchange::trimWhiteSpaces(std::string str) {
+    size_t start = 0;
+    size_t end = str.length() - 1;
+
+    while (str[start] == ' ')
+        start++;
+    while (str[end] == ' ')
+        end--;
+    return (str.substr(start, end - start + 1));
+}
+
 void    BitcoinExchange::checkDateFormatted(std::string line) {
     std::string* splitted = split(line, "-");
     if (splitted == NULL)
@@ -77,8 +88,8 @@ void    BitcoinExchange::checkDateFormatted(std::string line) {
         delete[] splitted;
         throw BadInputException();
     }
-    if (!isInCharset(splitted[0], "0123456789") 
-    || !isInCharset(splitted[1], "0123456789") 
+    if (!isInCharset(splitted[0], "0123456789")
+    || !isInCharset(splitted[1], "0123456789")
     || !isInCharset(splitted[2], "0123456789")) {
         delete[] splitted;
         throw BadInputException();
@@ -136,7 +147,7 @@ bool    BitcoinExchange::isNumericChar(char c) {
 
 void    BitcoinExchange::checkFloatFormatted(std::string str) {
     if (!isInCharset(str, "0123456789.")
-    ||  !isNumericChar(str[0]) 
+    ||  !isNumericChar(str[0])
     || !isNumericChar(str[str.length() - 1]))
         throw IllegalValueException();
 
@@ -150,7 +161,7 @@ void    BitcoinExchange::checkFloatFormatted(std::string str) {
 
 void	BitcoinExchange::readCsv(std::string directory) {
     std::ifstream ifs;
-    
+
     ifs.open(directory);
     if (!ifs.is_open())
         throw FileOpenException();
@@ -178,6 +189,12 @@ void	BitcoinExchange::readCsv(std::string directory) {
     ifs.close();
 }
 
+void    BitcoinExchange::checkIntRangedNumericFloat(std::string str) {
+    double value = std::strtod(str.c_str(), NULL);
+    if (value < 0 || value > INT_MAX)
+        throw IllegalValueException();
+}
+
 void    BitcoinExchange::readArgumentFile(std::string directory) {
     std::ifstream ifs;
 
@@ -198,13 +215,14 @@ void    BitcoinExchange::readArgumentFile(std::string directory) {
             std::cerr << e.what() << "\"" << line << "\""  << std::endl;
             continue;
         }
-        std::string key = splitted[0];
-        std::string value = splitted[1];
+        std::string key = trimWhiteSpaces(splitted[0]);
+        std::string value = trimWhiteSpaces(splitted[1]);
         try {
             if (countSplitted(splitted) != 2)
                 throw BadInputException();
             checkDateFormatted(key);
             checkFloatFormatted(value);
+            checkIntRangedNumericFloat(value);
         } catch(const std::exception& e) {
             std::cerr << e.what() << "(key : " << "\"" << key << "\"" << ", value : " << "\"" << value << "\")" << std::endl;
         }
