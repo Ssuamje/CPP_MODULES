@@ -86,7 +86,7 @@ void    RPN::checkTokens(std::string* tokens) {
             operands++;
         if (isOperator(tokens[i]))
             operators++;
-        if (!isValidToken(tokens[i]))
+        if (tokens[i].empty() || !isValidToken(tokens[i]))
             throw std::runtime_error("Invalid token!");
     }
     if (operands - operators != 1)
@@ -108,6 +108,8 @@ void    RPN::doPostfixCalculate(std::string argument) {
         if (isOperands(args[i]))
             operandStack.push(std::strtod(args[i].c_str(), NULL));
         if (isOperator(args[i])) {
+            if (operandStack.size() < 2)
+                throw std::runtime_error("Invalid Operation!");
             int operand1 = operandStack.top();
             operandStack.pop();
             int operand2 = operandStack.top();

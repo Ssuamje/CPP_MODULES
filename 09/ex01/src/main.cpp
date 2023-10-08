@@ -7,6 +7,11 @@ int main(int ac, char** av) {
     }
     RPN rpn = RPN();
     
-    rpn.doPostfixCalculate(av[1]);
+    try {
+        rpn.doPostfixCalculate(av[1]);
+    } catch (std::exception& e) {
+        std::cout << e.what() << std::endl;
+        return (EXIT_FAILURE);
+    }
     return EXIT_SUCCESS;
 }
