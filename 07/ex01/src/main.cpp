@@ -12,6 +12,9 @@ int main() {
         std::cout << intArray[i] << " ";
     std::cout << std::endl;
 
+    ::iter(intArray, 5, print<const int>);
+    std::cout << std::endl;
     ::iter(intArray, 5, printInt);
+    std::cout << std::endl;
     return 0;
 }
