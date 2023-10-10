@@ -95,6 +95,16 @@ bool ScalarConverter::isStartsWithAlphabetAndEndsWithNumeric(std::string input) 
         && std::isdigit(input[input.size() - 1]));
 }
 
+bool ScalarConverter::isMoreCharacterAfterF(std::string input) {
+    size_t fPos = input.find('f');
+    size_t FPos = input.find('F');
+
+    if ((fPos != std::string::npos && fPos != input.size() - 1)
+    ||  (FPos != std::string::npos && FPos != input.size() - 1))
+        return (true);
+    return (false);
+}
+
 double ScalarConverter::stringToDouble(std::string input) {
     std::string det = input;
     double value;
@@ -105,7 +115,8 @@ double ScalarConverter::stringToDouble(std::string input) {
     && !isSignedMoreThanOnce(det)
     && isDottedCorrectly(det)
     && isEndsWithFOrNumber(det)
-    && !isStartsWithAlphabetAndEndsWithNumeric(det))
+    && !isStartsWithAlphabetAndEndsWithNumeric(det)
+    && !isMoreCharacterAfterF(det))
     ) {
         if (input.length() == 1 && !std::isdigit(det[0]))
             value = static_cast<double>(det[0]);

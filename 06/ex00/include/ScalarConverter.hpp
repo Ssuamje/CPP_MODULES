@@ -24,6 +24,7 @@ class ScalarConverter {
         static bool isStartsWithAlphabetAndEndsWithNumeric(std::string input);
         static bool isAscii(char c);
         static bool isSigned(std::string input);
+        static bool isMoreCharacterAfterF(std::string input);
         static void putAsChar(double value);
         static void putAsInt(double value);
         static void putAsFloat(double value);
